@@ -15,7 +15,7 @@
     padding-top: -15px !important;
 }
 .left-app {
-    height: 100vh; 
+    height: 100vh;
     display: flex;
     text-align: center;
     align-items: center;
@@ -35,18 +35,18 @@
     letter-spacing: 1.5px !important;
     font-size: 25px !important;
     font-weight: 200 !important;
-    word-spacing: 1px !important;   
+    word-spacing: 1px !important;
 }
 
 .top-left-text {
-    padding-bottom: 17vh;   
+    padding-bottom: 17vh;
 }
 .bottom-left-text {
     padding-top: 17vh;
     height: 20vh;
 }
 .right-app {
-    background-color: aliceblue; 
+    background-color: aliceblue;
     height: 100vh;
     padding-right: 0px !important;
     padding-left: 0 !important;
@@ -54,6 +54,7 @@
     margin-left: 0;
     overflow-y: scroll;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 .main-image {
     width: 55%;
@@ -90,7 +91,7 @@
     letter-spacing: 1.5px;
     font-size: 15px;
     font-weight: 400;
-    word-spacing: 1px;   
+    word-spacing: 1px;
 }
 .closer-text {
     word-spacing: 0.3px !important;
@@ -160,4 +161,3 @@
     -moz-animation: blink 0.7s infinite;
     animation: blink 0.7s infinite;
 }
-
