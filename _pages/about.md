@@ -7,7 +7,7 @@ subtitle: Decision Making Under Uncertainty for Scientific Discovery
 profile:
   align: right
   image: desanti_riccardo.jpg
-  image_circular: true # crops the image to make it circular
+  image_circular: false # crops the image to make it circular
   more_info: >
     <p>ETH AI Center, OAT</p>
     <p>19th floor, office X14</p>
