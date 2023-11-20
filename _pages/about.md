@@ -2,15 +2,15 @@
 layout: about
 title: about
 permalink: /
-subtitle: Sequential Decision Making Under Uncertainty for Scientific Discovery
+subtitle: Decision Making Under Uncertainty for Scientific Discovery
 
 profile:
   align: right
   image: desanti_riccardo.jpg
   image_circular: true # crops the image to make it circular
   more_info: >
-    <p>ETH AI Center, 19th floor, office X14</p>
-    <p>Andreasstrasse 5, 8092</p>
+    <p>ETH AI Center, OAT</p>
+    <p>19th floor, office X14</p>
     <p>Zurich, Switzerland</p>
 
 news: true  # includes a list of news items
