@@ -9,7 +9,7 @@ profile:
   image: desanti_riccardo.jpg
   image_circular: true # crops the image to make it circular
   more_info: >
-    <p>Room X14, Floor 19th/X, ETH AI Center</p>
+    <p>ETH AI Center, 19th floor, office X14</p>
     <p>Andreasstrasse 5, 8092</p>
     <p>Zurich, Switzerland</p>
 
