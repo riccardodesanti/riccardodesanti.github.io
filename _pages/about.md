@@ -2,11 +2,11 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Sequential Decision Making Under Uncertainty | Automatic Scientific Discovery
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: desanti_riccardo.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Room X14, Floor 19th/X, ETH AI Center</p>
