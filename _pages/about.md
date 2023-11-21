@@ -16,7 +16,7 @@ profile:
 news: true  # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: false  # includes social icons at the bottom of the page 
+social: false  # includes social icons at the bottom of the page
 ---
 
 I am a MSc student at ETH Zurich majoring in Machine Learning and Theoretical CS. During my Bachelor I have started my research journey in Unsupervised Reinforcement Learning (RL) supervised by prof. Marcello Restelli at Politecnico di Milano. Currently, I am doing a visiting at the University of Oxford, while last year I was at Imperial College London, both times under the supervision of profs. Michael Bronstein and Marcello Restelli.
