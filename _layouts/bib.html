@@ -135,16 +135,16 @@
         <div class="periodical">
           {{ entry.note | strip }}
         </div>
-          <!-- Workshop -->
-          <div>
-          {%- if entry.workshop %}
-            <em>{{entry.workshop}}</em>
-          {%- endif %}
-            </div>
           <!-- Award -->
           <div>
           {%- if entry.award %}
             <em class="pubaward">{{entry.award}}</em>
+          {%- endif %}
+            </div>
+          <!-- Workshop -->
+          <div>
+          {%- if entry.workshop %}
+            <em>{{entry.workshop}}</em>
           {%- endif %}
             </div>
 
@@ -161,6 +161,9 @@
           {%- endif %}
           {%- if entry.html %}
             <a href="{{ entry.html }}" class="btn btn-sm z-depth-0" role="button">HTML</a>
+          {%- endif %}
+            {%- if entry.talk %}
+            <a href="{{ entry.talk }}" class="btn btn-sm z-depth-0" role="button">HTML</a>
           {%- endif %}
           {%- if entry.pdf %}
             {% if entry.pdf contains '://' -%}
