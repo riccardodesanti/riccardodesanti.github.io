@@ -15,6 +15,9 @@
             zoomable=false
             alt=entry.preview -%}
           {%- endif -%}
+          {%- if entry.abbrsec -%}
+            <abbr class="badge">{{entry.abbrsec}}</abbr>
+          {%- endif -%}
         {%- elsif entry.abbr -%}
           {%- if site.data.venues[entry.abbr] -%}
             {%- assign venue_style = nil -%}
