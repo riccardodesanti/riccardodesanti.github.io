@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: Decision Making Under Uncertainty for Scientific Discovery
 
