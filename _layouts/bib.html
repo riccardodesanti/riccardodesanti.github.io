@@ -28,6 +28,8 @@
           {%- else -%}
             <abbr class="badge">{{entry.abbr}}</abbr>
           {%- endif -%}
+        {%- elsif entry.abbrsec -%}
+           <c class="badge">{{entry.abbrsec}}</c>
         {%- endif -%}
         </div>
         {%- endif -%}
