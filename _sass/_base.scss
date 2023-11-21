@@ -700,6 +700,10 @@ footer.sticky-bottom {
         font-weight: bolder;
       }
 
+      .journal {
+        color: var(--global-theme-color);
+      }
+
       .author {
         a {
           border-bottom: 1px dashed var(--global-theme-color);
