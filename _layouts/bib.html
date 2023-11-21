@@ -136,17 +136,14 @@
           {{ entry.note | strip }}
         </div>
           <!-- Workshop -->
-          <div>
            {%- if entry.workshop %}
             <em>{{entry.workshop}}</em>
           {%- endif %}
-          </div>
           <!-- Award -->
-          <div>
            {%- if entry.award %}
             <em class="pubaward">{{entry.award}}</em>
           {%- endif %}
-          </div>
+
           <!-- Links/Buttons -->
           <div class="links">
           {%- if entry.abstract %}
