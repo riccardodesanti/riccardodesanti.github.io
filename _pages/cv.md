@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /cv/resume_desanti.pdf
+permalink: /assets/pdf/resume_desanti.pdf
 title: Resume
 nav: true
 nav_order: 4
