@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Decision Making Under Uncertainty for Scientific Discovery: from mathematical foundations to practical methods.
+subtitle: Decision Making Under Uncertainty for Scientific Discovery. From mathematical foundations to practical methods.
 
 profile:
   align: right
