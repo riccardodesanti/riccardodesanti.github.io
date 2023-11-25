@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Decision Making Under Uncertainty for Scientific Discovery.
+subtitle: Decision Making Under Uncertainty. Foundations and applications in Scientific Discovery.
 
 profile:
   align: right
