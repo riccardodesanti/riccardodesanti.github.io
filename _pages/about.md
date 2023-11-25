@@ -23,7 +23,7 @@ I am a PhD student in Machine Learning at the [ETH AI Center](https://ai.ethz.ch
 My research has been recently awarded with an [Outstanding Paper Award at ICML 2022](https://icml.cc/virtual/2022/oral/16290).
 
 ## research interests
-I am broadly interested in the foundations of algorithmic decision-making and its applications in automatic scientific discovery. This spans a wide spectrum of areas including:
+I am broadly interested in the foundations of **algorithmic decision-making** and its applications in **automatic scientific discovery**. This spans a wide spectrum of areas including:
 
 
 - Decision Making Under Uncertainty (Reinforcement/Active Learning, Bayesian Optimization, Bandits)
@@ -31,5 +31,7 @@ I am broadly interested in the foundations of algorithmic decision-making and it
 - Combinatorial and Non-Convex Optimization
 - Causality and Geometric Machine Learning
 
-I strive to design reliable algorithms with guarantees leading to theoretical understanding of the underlying problems as well as relevant for real world applications mostly related with digital chemistry, including molecular design, drug discovery, and experimental design in chemical spaces. 
-If you are a MS student wishing to work with me, feel free to [apply here](https://forms.gle/ykpdjFvoyi74sSh49).
+I strive to design reliable algorithms with guarantees leading to theoretical understanding of the underlying problems as well as relevant for real world applications mostly related with digital chemistry, including molecular design, drug discovery, and experimental design in chemical spaces.
+If you are a MS student wishing to work with me, feel free to [contact me here](https://forms.gle/ykpdjFvoyi74sSh49).
+
+**Stay in touch**: [Google Scholar]() |  [Twitter]() |  [LinkedIn]() |  [Github]() or [rdesanti[at]ethz[dot]ch]()
