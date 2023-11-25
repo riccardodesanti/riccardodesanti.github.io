@@ -31,6 +31,8 @@ I am broadly interested in the foundations of **algorithmic decision-making** an
 - Combinatorial and Non-Convex Optimization
 - Causality and Geometric Machine Learning
 
-I strive to design reliable algorithms with guarantees leading to theoretical understanding of the underlying problems as well as relevant for real world applications mostly related with digital chemistry, including molecular design, drug discovery, and experimental design in chemical spaces.  <br>
+I strive to design reliable algorithms with guarantees leading to theoretical understanding of the underlying problems as well as relevant for real world applications mostly related with digital chemistry, including molecular design, drug discovery, and experimental design in chemical spaces. 
+
 If you are a MS student wishing to work with me, feel free to [contact me here](https://forms.gle/ykpdjFvoyi74sSh49).
-**Contancts:** [Google Scholar](https://scholar.google.com/citations?user=K7qyOj0AAAAJ&hl=en) |  [Twitter](https://twitter.com/desariky) |  [LinkedIn](https://www.linkedin.com/in/riccardo-de-santi-426139135/) |  [Github](https://github.com/riccardodesanti) or rdesanti[at]ethz[dot]ch
+
+**Contancts:** [Google Scholar](https://scholar.google.com/citations?user=K7qyOj0AAAAJ&hl=en) \|  [Twitter](https://twitter.com/desariky) \|  [LinkedIn](https://www.linkedin.com/in/riccardo-de-santi-426139135/) \|  [Github](https://github.com/riccardodesanti) \| rdesanti[at]ethz[dot]ch
