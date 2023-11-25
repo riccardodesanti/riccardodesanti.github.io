@@ -31,4 +31,5 @@ I am broadly interested in the foundations of algorithmic decision-making and it
 - Combinatorial and Non-Convex Optimization
 - Causality and Geometric Machine Learning
 
-I strive to design reliable algorithms with guarantees leading to theoretical understanding of the underlying problems as well as relevant for real world applications mostly related with digital chemistry, including molecular design, drug discovery, and experimental design in chemical spaces.
+I strive to design reliable algorithms with guarantees leading to theoretical understanding of the underlying problems as well as relevant for real world applications mostly related with digital chemistry, including molecular design, drug discovery, and experimental design in chemical spaces. 
+If you are a MS student wishing to work with me, feel free to [apply here](https://forms.gle/ykpdjFvoyi74sSh49).
