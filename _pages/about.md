@@ -9,8 +9,7 @@ profile:
   image: desanti_riccardo.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>ETH AI Center, office X14</p>
-    <p>Zurich, Switzerland</p>
+    <p></p>
 
 news: true  # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
@@ -33,4 +32,4 @@ I strive to design reliable algorithms with guarantees leading to theoretical un
 
 If you are a MS student wishing to work with me, feel free to [contact me here](https://forms.gle/ykpdjFvoyi74sSh49).
 
-**Contacts:** [Google Scholar](https://scholar.google.com/citations?user=K7qyOj0AAAAJ&hl=en) &nbsp;&nbsp; \| &nbsp;&nbsp; [Twitter](https://twitter.com/desariky) &nbsp;&nbsp; \| &nbsp;&nbsp; [LinkedIn](https://www.linkedin.com/in/riccardo-de-santi-426139135/) &nbsp;&nbsp; \| &nbsp;&nbsp; [Github](https://github.com/riccardodesanti) &nbsp;&nbsp; \| &nbsp;&nbsp; rdesanti [at] ethz [dot] ch
+**Contacts:** [Google Scholar](https://scholar.google.com/citations?user=K7qyOj0AAAAJ&hl=en) &nbsp; \| &nbsp; [Twitter](https://twitter.com/desariky) &nbsp; \| &nbsp; [LinkedIn](https://www.linkedin.com/in/riccardo-de-santi-426139135/) &nbsp; \| &nbsp; [Github](https://github.com/riccardodesanti) &nbsp; \| &nbsp; rdesanti [at] ethz [dot] ch
