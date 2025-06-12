@@ -3,7 +3,9 @@ layout: about
 title: About
 permalink: /
 subtitle: >
-  <a href="https://ai.ethz.ch" target="_blank" rel="noopener">ETH AI Center</a> PhD student. <strong>Generative Optimization</strong> and <strong>Exploration</strong> for <strong>Large-scale Discovery</strong>. 
+  <a href="https://ai.ethz.ch" target="_blank" rel="noopener">ETH AI Center</a>
+  PhD student. <strong>Generative Optimization</strong> and
+  <strong>Exploration</strong> for <strong>Large-scale Discovery</strong>.
 
 profile:
   align: right
