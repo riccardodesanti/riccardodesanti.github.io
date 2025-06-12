@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: "**Generative optimization** and **exploration**. Mathematical foundations and methods for **large-scale discovery** applications." 
+subtitle: "<strong>Generative optimization</strong> and <strong>exploration</strong>. Mathematical foundations and methods for <strong>large-scale discovery</strong> applications." 
 
 profile:
   align: right
