@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Decision Making Under Uncertainty. Foundations and applications in Scientific Discovery.
+subtitle: **Generative optimization** and **exploration**: from mathematical foundations to **large-scale discovery** methods. 
 
 profile:
   align: right
