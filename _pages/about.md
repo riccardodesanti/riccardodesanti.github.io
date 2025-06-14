@@ -22,7 +22,7 @@ social: false  # includes social icons at the bottom of the page
 
 I am a PhD student in Machine Learning at the [ETH AI Center](https://ai.ethz.ch), advised by [Andreas Krause](https://las.inf.ethz.ch), [Niao He](https://odi.inf.ethz.ch), and [Kjell Jorner](https://dcl.ethz.ch), and affiliated with the [Institute of Machine Learning](https://ml.inf.ethz.ch) and [NCCR Catalysis](https://www.nccr-catalysis.ch). My research focuses on generative optimization and exploration — combining decision-making, optimization and generative modeling to tackle fundamental challenges in large-scale scientific discovery.
 
-Before this, I worked on unsupervised exploration in RL, earning an [Outstanding Paper Award at ICML 2022](https://icml.cc/virtual/2022/oral/16290) while supervised by [Marcello Restelli](https://scholar.google.com/citations?user=xdgxRiEAAAAJ&hl=en) during my BSc, and completed research visits at the University of Oxford and Imperial College London under [Michael Bronstein](https://www.cs.ox.ac.uk/people/michael.bronstein/) during my MSc.
+Before this, I worked on unsupervised exploration in RL, earning an [Outstanding Paper Award at ICML 2022](https://icml.cc/virtual/2022/oral/16290) with [Marcello Restelli](https://scholar.google.com/citations?user=xdgxRiEAAAAJ&hl=en) during my BSc, and completed research visits at the University of Oxford and Imperial College London with [Michael Bronstein](https://www.cs.ox.ac.uk/people/michael.bronstein/) during my MSc.
 
 
 ## research interests
