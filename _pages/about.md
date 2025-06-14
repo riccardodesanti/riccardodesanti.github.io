@@ -26,15 +26,14 @@ Before this, I worked on unsupervised exploration in RL, earning an [Outstanding
 
 
 ## research interests
-My research aims to tackle generative discovery in a full-stack manner — from mathematical and algorithmic foundations of optimization and exploration via generative models, to scalable learning methods, and real-world applications including molecules and enzyme design for [sustainable chemistry](https://www.nccr-catalysis.ch/research/approach/).
+My research aims to tackle generative discovery in a full-stack manner — from mathematical and algorithmic foundations of **optimization and exploration via generative models**, to scalable learning methods, and real-world applications including [molecules and enzyme design for sustainable chemistry](https://www.nccr-catalysis.ch/research/approach/). To this end, my work typically draws on the following areas:
 
-- Decision Making Under Uncertainty (Reinforcement/Active Learning, Bayesian Optimization, Bandits)
-- Optimal Experimental Design
-- Submodular and Non-Convex Optimization
-- Causality and Geometric Machine Learning
+- Decision Making Under Uncertainty (Reinforcement/Active Learning, Bayesian Optimization, Optimal Experimental Design)
+- Generative Modeling (Diffusion and Flow Matching models among others)
+- Optimization (Convex, Submodular, on Probability Spaces)
+- Stochastic Optimal Control
 
-I strive to design reliable algorithms with guarantees leading to theoretical understanding of the underlying problems as well as relevant for real world applications mostly related with digital chemistry, including molecular design, drug discovery, and experimental design in chemical spaces. 
 
-If you are a MS student wishing to work with me, feel free to [contact me here](https://forms.gle/ykpdjFvoyi74sSh49).
+Feel free to [contact me here](mailto:rdesanti@ethz.ch) if you wish to collaborate, exchange ideas, or seek thesis supervision.
 
 **Contacts:** [Google Scholar](https://scholar.google.com/citations?user=K7qyOj0AAAAJ&hl=en) &nbsp; \| &nbsp; [Twitter](https://twitter.com/desariky) &nbsp; \| &nbsp; [LinkedIn](https://www.linkedin.com/in/riccardo-de-santi-426139135/) &nbsp; \| &nbsp; [Github](https://github.com/riccardodesanti) &nbsp; \| &nbsp; rdesanti [at] ethz [dot] ch
