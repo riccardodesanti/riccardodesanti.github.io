@@ -26,7 +26,7 @@ Before this, I worked on unsupervised exploration in RL, earning an [Outstanding
 
 
 ## research interests
-My research aims to tackle generative discovery in a full-stack manner — from mathematical and algorithmic foundations of optimization and exploration via generative models, to scalable learning methods, and real-world applications including molecules and enzyme design for sustainable chemistry.
+My research aims to tackle generative discovery in a full-stack manner — from mathematical and algorithmic foundations of optimization and exploration via generative models, to scalable learning methods, and real-world applications including molecules and enzyme design for [sustainable chemistry](https://www.nccr-catalysis.ch/research/approach/).
 
 - Decision Making Under Uncertainty (Reinforcement/Active Learning, Bayesian Optimization, Bandits)
 - Optimal Experimental Design
