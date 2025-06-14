@@ -36,4 +36,4 @@ I work on mathematical foundations, scalable learning methods, and real-world ap
 
 Feel free to [reach out](mailto:rdesanti@ethz.ch) if you wish to collaborate, exchange ideas, or seek thesis supervision.
 
-**Contacts:** [Google Scholar](https://scholar.google.com/citations?user=K7qyOj0AAAAJ&hl=en) &nbsp; \| &nbsp; [Twitter](https://twitter.com/desariky) &nbsp; \| &nbsp; [LinkedIn](https://www.linkedin.com/in/riccardo-de-santi-426139135/) &nbsp; \| &nbsp; [Github](https://github.com/riccardodesanti) &nbsp; \| &nbsp; rdesanti [at] ethz [dot] ch
+**Contacts:** [rdesanti@ethz.ch](mailto:rdesanti@ethz.ch) &nbsp; \| &nbsp; [Google Scholar](https://scholar.google.com/citations?user=K7qyOj0AAAAJ&hl=en) &nbsp; \| &nbsp; [Twitter](https://twitter.com/desariky) &nbsp; \| &nbsp; [LinkedIn](https://www.linkedin.com/in/riccardo-de-santi-426139135/) &nbsp; \| &nbsp; [Github](https://github.com/riccardodesanti) 
