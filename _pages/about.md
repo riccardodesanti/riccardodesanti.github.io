@@ -26,8 +26,7 @@ Before this, I worked on unsupervised exploration in RL, earning an [Outstanding
 
 
 ## research interests
-I am broadly interested in the foundations of **algorithmic decision-making** and its applications in **automatic scientific discovery**. This spans a wide spectrum of areas including:
-
+My research aims to tackle generative discovery in a full-stack manner — from mathematical and algorithmic foundations of optimization and exploration via generative models, to scalable learning methods, and real-world applications including molecules and enzyme design for sustainable chemistry.
 
 - Decision Making Under Uncertainty (Reinforcement/Active Learning, Bayesian Optimization, Bandits)
 - Optimal Experimental Design
