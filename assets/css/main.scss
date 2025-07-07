@@ -25,16 +25,14 @@ $max-content-width: {{ site.max_width }};
 }
 
 .badge-stack {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: 4px;
   align-items: flex-start;
 }
 
 .badge-stack .badge {
-  display: flex; /* changed from inline-block to flex */
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   font-size: 11px;
   font-weight: 600;
   padding: 4px 9px;
@@ -43,5 +41,13 @@ $max-content-width: {{ site.max_width }};
   text-align: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   line-height: 1.1;
-  width: fit-content; /* ensures both badges size to content */
+  background-color: inherit;
+}
+
+.badge a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
 }
