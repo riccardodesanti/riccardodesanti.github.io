@@ -33,12 +33,12 @@ $max-content-width: {{ site.max_width }};
 
 .badge-stack .badge {
   display: inline-block;
-  padding: 4px 10px;
-  font-weight: 700;
-  font-size: 11.5px;
-  line-height: 1.1;
-  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 4px;
   white-space: nowrap;
   text-align: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  line-height: 1.1;
 }
