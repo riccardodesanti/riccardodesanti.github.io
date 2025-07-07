@@ -32,7 +32,9 @@ $max-content-width: {{ site.max_width }};
 }
 
 .badge-stack .badge {
-  display: inline-block;
+  display: flex; /* changed from inline-block to flex */
+  align-items: center;
+  justify-content: center;
   font-size: 11px;
   font-weight: 600;
   padding: 4px 9px;
@@ -41,4 +43,5 @@ $max-content-width: {{ site.max_width }};
   text-align: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   line-height: 1.1;
+  width: fit-content; /* ensures both badges size to content */
 }
