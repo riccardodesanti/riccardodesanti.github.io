@@ -3,7 +3,7 @@
     // grab all the pill‐layout rules
     @extend .pill;
     // grab the presentation‐color rules
-    @extend .pill--abbr;
+    @extend .pill--presentation;
     // kill the default italics
     font-style: normal;
   }
