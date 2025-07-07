@@ -17,6 +17,11 @@
           {%- endif -%}
           {%- if entry.abbrsec -%}
             <abbr class="badge">{{entry.abbrsec}}</abbr>
+          {%- if entry.badge_extra -%}
+            <div style="margin-top: 4px;">
+              <abbr class="badge red">{{ entry.badge_extra }}</abbr>
+            </div>
+          {%- endif -%}
           {%- endif -%}
         {%- elsif entry.abbr -%}
           {%- if site.data.venues[entry.abbr] -%}

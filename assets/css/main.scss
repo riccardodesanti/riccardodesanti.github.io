@@ -18,3 +18,8 @@ $max-content-width: {{ site.max_width }};
   "font-awesome/solid",
   "font-awesome/regular"
 ;
+
+.badge.red {
+  background-color: #e74c3c;
+  color: white;
+}
