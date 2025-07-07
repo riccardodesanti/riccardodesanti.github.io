@@ -1,9 +1,0 @@
-// turn the orange “award” pill into the same red style as “presentation”...
-.publication__award {
-    // grab all the pill‐layout rules
-    @extend .pill;
-    // grab the presentation‐color rules
-    @extend .pill--presentation;
-    // kill the default italics
-    font-style: normal;
-  }
