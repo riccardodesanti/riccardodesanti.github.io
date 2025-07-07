@@ -31,13 +31,15 @@ $max-content-width: {{ site.max_width }};
 }
 
 .badge-stack .badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-weight: 600;
-  font-size: 14px;
-  border-radius: 6px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  padding: 4px 10px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  border-radius: 6px !important;
+  width: max-content;
 }
