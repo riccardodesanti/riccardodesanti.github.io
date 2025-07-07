@@ -23,3 +23,9 @@ $max-content-width: {{ site.max_width }};
   background-color: #e74c3c;
   color: white;
 }
+
+.badge-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

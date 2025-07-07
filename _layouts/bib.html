@@ -17,22 +17,25 @@
           {%- endif -%}
           {%- if entry.abbrsec -%}
             <abbr class="badge">{{entry.abbrsec}}</abbr>
-          {%- if entry.badge_extra -%}
-            <div style="margin-top: 4px;">
-              <abbr class="badge red">{{ entry.badge_extra }}</abbr>
-            </div>
           {%- endif -%}
-          {%- endif -%}
-        {%- elsif entry.abbr -%}
-          {%- if site.data.venues[entry.abbr] -%}
-            {%- assign venue_style = nil -%}
-            {%- if site.data.venues[entry.abbr].color != blank -%}
-              {%- assign venue_style = site.data.venues[entry.abbr].color | prepend: 'style="background-color:' | append: '"' -%}
+          {%- elsif entry.abbr -%}
+          <div class="badge-stack">
+            {%- if site.data.venues[entry.abbr] -%}
+              {%- assign venue_style = nil -%}
+              {%- if site.data.venues[entry.abbr].color != blank -%}
+                {%- assign venue_style = site.data.venues[entry.abbr].color | prepend: 'style="background-color:' | append: '"' -%}
+              {%- endif -%}
+              <abbr class="badge" {% if venue_style %}{{venue_style}}{% endif %}>
+                <a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a>
+              </abbr>
+            {%- else -%}
+              <abbr class="badge">{{entry.abbr}}</abbr>
             {%- endif -%}
-            <abbr class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a></abbr>
-          {%- else -%}
-            <abbr class="badge">{{entry.abbr}}</abbr>
-          {%- endif -%}
+        
+            {%- if entry.badge_extra -%}
+              <abbr class="badge red">{{entry.badge_extra}}</abbr>
+            {%- endif -%}
+          </div>
         {%- elsif entry.abbrsec -%}
            <abbr class="badge">{{entry.abbrsec}}</abbr>
         {%- endif -%}
