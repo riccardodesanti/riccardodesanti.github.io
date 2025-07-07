@@ -29,3 +29,15 @@ $max-content-width: {{ site.max_width }};
   flex-direction: column;
   gap: 4px;
 }
+
+.badge-stack .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 6px;
+}
