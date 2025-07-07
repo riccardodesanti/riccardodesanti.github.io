@@ -6,17 +6,15 @@
 // Dimensions
 $max-content-width: {{ site.max_width }};
 
-@import "jekyll-theme-al-folio";
-
-// @import
-//   "variables",
-//   "themes",
-//   "layout",
-//   "base",
-//   "distill",
-//   "cv",
-//   "font-awesome/fontawesome",
-//   "font-awesome/brands",
-//   "font-awesome/solid",
-//   "font-awesome/regular"
-// ;
+@import
+  "variables",
+  "themes",
+  "layout",
+  "base",
+  "distill",
+  "cv",
+  "font-awesome/fontawesome",
+  "font-awesome/brands",
+  "font-awesome/solid",
+  "font-awesome/regular"
+;
