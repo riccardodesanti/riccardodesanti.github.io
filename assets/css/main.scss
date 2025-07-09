@@ -46,10 +46,11 @@ $max-content-width: {{ site.max_width }};
   font-weight: 600;
   padding: 4px 0px;
   border-radius: 6px;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
   text-align: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  line-height: 1.1;
+  line-height: 1.2;
   width: 100%;              // ← fill the flex container’s width
   box-sizing: border-box;
 }
