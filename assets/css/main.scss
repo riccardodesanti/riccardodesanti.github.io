@@ -66,9 +66,7 @@ $max-content-width: {{ site.max_width }};
   text-decoration: none;
 }
 
-// ——————————————————————————————
-// Quick fix: push the paper title below the badges
-// ——————————————————————————————
-.publications ol.bibliography li .title {
-  margin-top: 3rem;    // adjust up/down so the badges clear the text
+// Simple: space under the badge stack
+.badge-stack {
+  margin-bottom: 1rem;  /* push whatever follows down */
 }
