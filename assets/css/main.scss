@@ -67,6 +67,6 @@ $max-content-width: {{ site.max_width }};
 }
 
 // Simple: space under the badge stack
-.badge-stack {
-  margin-bottom: 10px;  /* push whatever follows down */
+.publications ol.bibliography li .abbr {
+  margin-bottom: 1rem;  /* or whatever spacing you want */
 }
