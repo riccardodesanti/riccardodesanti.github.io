@@ -65,3 +65,16 @@ $max-content-width: {{ site.max_width }};
   color: inherit;
   text-decoration: none;
 }
+
+// ——————————————————————————————
+// Let the badge container grow and push the title down
+// ——————————————————————————————
+.publications ol.bibliography li .abbr {
+  height: auto !important;         // let it expand to fit two badges
+  margin-bottom: 1rem !important;  // clear gap between badges & title
+
+  /* optional: stack badges nicely */
+  display: flex !important;
+  flex-direction: column;
+  gap: 0.25rem !important;
+}
