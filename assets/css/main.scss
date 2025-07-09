@@ -3,6 +3,9 @@
 ---
 @charset "utf-8";
 
+// 1) Override the badge-column width **before** imports
+$pub-list-badge-col-width: 6rem;   // ← pick whatever fixed width you like
+
 // Dimensions
 $max-content-width: {{ site.max_width }};
 
@@ -19,24 +22,24 @@ $max-content-width: {{ site.max_width }};
   "font-awesome/regular"
 ;
 
-.pub-list {
-  grid-template-columns: 6rem 1fr !important;
-}
+// (No more .pub-list { … } override needed)
 
+// preserve your existing red badge style
 .badge.red {
   background-color: #e74c3c;
   color: white;
 }
 
+// 2) Make the badge-stack a block-flex so children can stretch
 .badge-stack {
-  display: inline-flex;
+  display: flex;            // ← block-level flex container
   flex-direction: column;
   gap: 4px;
-  align-items: stretch; /* <— KEY LINE */
+  align-items: stretch;     // ← each .badge will fill the 6rem
 }
 
 .badge-stack .badge {
-  display: flex;
+  display: flex;            // center its contents
   align-items: center;
   justify-content: center;
   font-size: 12px;
@@ -47,7 +50,7 @@ $max-content-width: {{ site.max_width }};
   text-align: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   line-height: 1.1;
-  width: 100%; /* <— KEY LINE */
+  width: 100%;              // ← fill the flex container’s width
   box-sizing: border-box;
 }
 
