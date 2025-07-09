@@ -1,9 +1,9 @@
 ---
 layout: post
-date: 2025-07-01 15:59:00-0400
+date: 2025-06-01 15:59:00-0400
 inline: true
 related_posts: false
 ---
 
-[Flow Density Control: Generative Optimization Beyond Entropy-Regularized Fine-Tuning](https://openreview.net/pdf?id=zOgAxSMgcB) has been accepted as Spotlight with Oral presentation at the Workshop on Generative AI and Biology at **ICML 2025**
+[Constrained Molecular Generation via Sequential Flow Model Fine-Tuning](https://genbio-workshop.github.io/2025/) has been accepted at the Workshop on Generative AI and Biology at **ICML 2025**
 
