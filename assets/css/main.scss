@@ -66,22 +66,12 @@ $max-content-width: {{ site.max_width }};
 }
 
 
-// —————————————————————————
-// Mobile pub‐list reset: no grid, blocks with margin
-// —————————————————————————
+// ——————————————————————————————
+// Mobile: ensure each pub entry is tall enough
+// ——————————————————————————————
 @media (max-width: 576px) {
-  /* select every publication list item */
-  .pub-list > li,
-  .pub-list__item {
-    display:           block !important;     // kill the two-col grid
-    grid-template-columns: none !important;
-    column-gap:        0 !important;         // no leftover gutter
-    margin-bottom:     1.5rem !important;    // space to next entry
-  }
-
-  /* badges should still be centered */
-  .badge-stack {
-    align-items:      center !important;
-    margin-bottom:    0.5rem;                // space between badges & title
+  .publications ol.bibliography > li {
+    min-height:   5rem !important;   // enough room for two badges
+    margin-bottom:1.5rem !important; // clear gap below
   }
 }
