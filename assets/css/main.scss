@@ -40,6 +40,8 @@ $max-content-width: {{ site.max_width }};
   }
 }
 
+
+
 // (No more .pub-list { … } override needed)
 
 // preserve your existing red badge style
@@ -79,4 +81,23 @@ $max-content-width: {{ site.max_width }};
   height: 100%;
   color: inherit;
   text-decoration: none;
+}
+
+
+// ——————————————————————
+// Mobile: stack badges + text in one column
+// ——————————————————————
+@media (max-width: 576px) {
+  /* target your publication <li>s */
+  .publications ol.bibliography > li {
+    /* collapse to one column so badges sit above the text */
+    grid-template-columns: 1fr !important;
+    /* add some vertical gap between badge stack and title */
+    row-gap: 0.5rem;
+  }
+
+  /* center the badge‐stack horizontally in that single column */
+  .badge-stack {
+    align-items: center;
+  }
 }
