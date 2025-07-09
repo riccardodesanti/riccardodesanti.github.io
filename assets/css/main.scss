@@ -66,20 +66,22 @@ $max-content-width: {{ site.max_width }};
 }
 
 
-// ————————————————————————
-// Mobile: stack badges + text vertically
-// ————————————————————————
+// —————————————————————————
+// Mobile pub‐list reset: no grid, blocks with margin
+// —————————————————————————
 @media (max-width: 576px) {
-  /* target each publication entry <li> */
-  .publications ol.bibliography > li {
-    display:           flex !important;
-    flex-direction:    column !important;
-    row-gap:           0.5rem !important;  /* space between badges & title */
-    align-items:       stretch;
+  /* select every publication list item */
+  .pub-list > li,
+  .pub-list__item {
+    display:           block !important;     // kill the two-col grid
+    grid-template-columns: none !important;
+    column-gap:        0 !important;         // no leftover gutter
+    margin-bottom:     1.5rem !important;    // space to next entry
   }
 
-  /* center the badge stack horizontally */
+  /* badges should still be centered */
   .badge-stack {
-    align-items: center !important;
+    align-items:      center !important;
+    margin-bottom:    0.5rem;                // space between badges & title
   }
 }
