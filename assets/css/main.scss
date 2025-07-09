@@ -32,7 +32,7 @@ $max-content-width: {{ site.max_width }};
 
 // 2) Make the badge-stack a block-flex so children can stretch
 .badge-stack {
-  display: inline-flex;            // ← block-level flex container
+  display: flex;            // ← block-level flex container
   flex-direction: column;
   gap: 4px;
   align-items: stretch;     // ← each .badge will fill the 6rem
