@@ -1,17 +1,18 @@
 ---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
 @charset "utf-8";
 
-// 1) Pick a wider badge column once and for all
-//    — this sets the first track in the grid that Al-Folio generates
-$pub-list-badge-col-width: 8rem;    // ← up from 6rem to 8rem (or whatever you like)
+// 1) Override the badge-column width **before** imports
+$pub-list-badge-col-width: 8rem;   // ← pick whatever fixed width you like
 
-/// your normal max‐width etc.
+// Dimensions
 $max-content-width: {{ site.max_width }};
 
 @import
   "variables",
   "themes",
-  "layout",   // must come *after* the $pub-list-badge-col-width override
+  "layout",
   "base",
   "distill",
   "cv",
@@ -21,45 +22,42 @@ $max-content-width: {{ site.max_width }};
   "font-awesome/regular"
 ;
 
-// 2) your red badge stays the same
+// (No more .pub-list { … } override needed)
+
+// preserve your existing red badge style
 .badge.red {
   background-color: #e74c3c;
   color: white;
 }
 
-// 3) make the stack a block‐level flex so it fills the 8rem cell
+// 2) Make the badge-stack a block-flex so children can stretch
 .badge-stack {
-  display: flex;            // ← block instead of inline
+  display: inline-flex;            // ← block-level flex container
   flex-direction: column;
   gap: 4px;
-  align-items: stretch;     // ← children will be forced to 100% of the 8rem
+  align-items: stretch;     // ← each .badge will fill the 6rem
 }
 
-// 4) style each pill *and* center its contents
 .badge-stack .badge {
-  display: flex;            // ← flex to center the inner text
+  display: flex;            // center its contents
   align-items: center;
   justify-content: center;
-
-  /* bump padding a bit so things look less cramped */
-  padding: 0.5rem 1rem;     // ← was 4px 9px
-
-  font-size: 0.75rem;       // ← scale to your taste
+  font-size: 12px;
   font-weight: 600;
+  padding: 4px 9px;
   border-radius: 6px;
   white-space: nowrap;
+  text-align: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-
-  width: 100%;              // ← fill that 8rem flex container
+  line-height: 1.1;
+  width: 100%;              // ← fill the flex container’s width
   box-sizing: border-box;
 }
 
-// 5) undo the “height:100%” on the link so vertical centering works
-.badge-stack .badge a {
+.badge a {
   display: inline-block;
-  width: auto;
-  height: auto;
-  line-height: normal;
+  width: 100%;
+  height: 100%;
   color: inherit;
   text-decoration: none;
 }
