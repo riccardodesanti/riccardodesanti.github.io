@@ -38,6 +38,7 @@ $max-content-width: {{ site.max_width }};
   flex-direction: column;
   gap: 4px;
   align-items: stretch;     // ← each .badge will fill the 6rem
+  margin-bottom: 0.75rem;
 }
 
 .badge-stack .badge {
@@ -63,27 +64,4 @@ $max-content-width: {{ site.max_width }};
   height: 100%;
   color: inherit;
   text-decoration: none;
-}
-
-
-// —————————————————————————————————————
-// Mobile: collapse pub‐list grid to a single column
-// —————————————————————————————————————
-@media only screen and (max-width: 576px) {
-  /* 1) Target every publication entry <li> */
-  .publications ol.bibliography > li,
-  .pub-list > li,
-  .pub-list__item {
-    /* force a single‐column grid instead of two */
-    grid-template-columns: 1fr !important;
-    /* add a little breathing room between badges & title */
-    row-gap: 0.5rem !important;
-    /* remove the old left/right gutter */
-    column-gap: 0 !important;
-  }
-
-  /* 2) Center the badge stack in that column */
-  .badge-stack {
-    align-items: center !important;
-  }
 }
