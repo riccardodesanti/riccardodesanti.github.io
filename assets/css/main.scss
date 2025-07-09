@@ -22,6 +22,24 @@ $max-content-width: {{ site.max_width }};
   "font-awesome/regular"
 ;
 
+// ——————————————————————
+// Mobile: single-column pubs so badges push the text down
+// ——————————————————————
+@media (max-width: 576px) {
+  // target each pub‐list item (Al-Folio v2 naming)
+  .pub-list__item {
+    /* drop back to a single column */
+    grid-template-columns: 1fr !important;
+    /* give a little breathing room between badges & text */
+    row-gap: 0.5rem;
+  }
+
+  // center the badges themselves
+  .badge-stack {
+    align-items: center;  
+  }
+}
+
 // (No more .pub-list { … } override needed)
 
 // preserve your existing red badge style
