@@ -66,12 +66,24 @@ $max-content-width: {{ site.max_width }};
 }
 
 
-// ——————————————————————————————
-// Mobile: ensure each pub entry is tall enough
-// ——————————————————————————————
+// —————————————————————————————————————
+// Mobile: collapse pub‐list grid to a single column
+// —————————————————————————————————————
 @media only screen and (max-width: 576px) {
-  .publications ol.bibliography > li {
-    min-height: 5rem !important;
-    margin-bottom: 1.5rem !important;
+  /* 1) Target every publication entry <li> */
+  .publications ol.bibliography > li,
+  .pub-list > li,
+  .pub-list__item {
+    /* force a single‐column grid instead of two */
+    grid-template-columns: 1fr !important;
+    /* add a little breathing room between badges & title */
+    row-gap: 0.5rem !important;
+    /* remove the old left/right gutter */
+    column-gap: 0 !important;
+  }
+
+  /* 2) Center the badge stack in that column */
+  .badge-stack {
+    align-items: center !important;
   }
 }
