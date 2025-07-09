@@ -67,12 +67,8 @@ $max-content-width: {{ site.max_width }};
 }
 
 // ——————————————————————————————
-// Always give the badge container room to grow
+// Quick fix: push the paper title below the badges
 // ——————————————————————————————
-.publications ol.bibliography li .badges,
-.publications ol.bibliography li .abbr {
-  display:          flex !important;
-  flex-direction:   column !important;
-  gap:              0.25rem !important;   // space between badges
-  padding-bottom:   1rem    !important;   // space before the title
+.publications ol.bibliography li .title {
+  margin-top: 3rem;    // adjust up/down so the badges clear the text
 }
