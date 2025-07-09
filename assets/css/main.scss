@@ -4,7 +4,7 @@
 @charset "utf-8";
 
 // 1) Override the badge-column width **before** imports
-$pub-list-badge-col-width: 8rem;   // ← pick whatever fixed width you like
+$pub-list-badge-col-width: 7rem;   // ← pick whatever fixed width you like
 
 // Dimensions
 $max-content-width: {{ site.max_width }};
