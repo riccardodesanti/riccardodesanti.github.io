@@ -67,14 +67,12 @@ $max-content-width: {{ site.max_width }};
 }
 
 // ——————————————————————————————
-// Let the badge container grow and push the title down
+// Always give the badge container room to grow
 // ——————————————————————————————
+.publications ol.bibliography li .badges,
 .publications ol.bibliography li .abbr {
-  height: auto !important;         // let it expand to fit two badges
-  margin-bottom: 1rem !important;  // clear gap between badges & title
-
-  /* optional: stack badges nicely */
-  display: flex !important;
-  flex-direction: column;
-  gap: 0.25rem !important;
+  display:          flex !important;
+  flex-direction:   column !important;
+  gap:              0.25rem !important;   // space between badges
+  padding-bottom:   1rem    !important;   // space before the title
 }
