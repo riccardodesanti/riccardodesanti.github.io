@@ -19,6 +19,10 @@ $max-content-width: {{ site.max_width }};
   "font-awesome/regular"
 ;
 
+.pub-list {
+  grid-template-columns: 6rem 1fr !important;
+}
+
 .badge.red {
   background-color: #e74c3c;
   color: white;
