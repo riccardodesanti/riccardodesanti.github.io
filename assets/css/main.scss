@@ -84,19 +84,19 @@ $max-content-width: {{ site.max_width }};
 }
 
 
-// ——————————————————————
+// —————————————————————————
 // Mobile: stack badges + text in one column
-// ——————————————————————
+// —————————————————————————
 @media (max-width: 576px) {
-  /* target your publication <li>s */
-  .publications ol.bibliography > li {
-    /* collapse to one column so badges sit above the text */
+  /* target the <ol> that Al-Folio turns into .pub-list */
+  .pub-list {
+    /* drop to one track so badges sit above the text */
     grid-template-columns: 1fr !important;
-    /* add some vertical gap between badge stack and title */
+    /* add some vertical breathing room */
     row-gap: 0.5rem;
   }
 
-  /* center the badge‐stack horizontally in that single column */
+  /* center your two-badge stack */
   .badge-stack {
     align-items: center;
   }
