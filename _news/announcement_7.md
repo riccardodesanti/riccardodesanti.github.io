@@ -5,5 +5,5 @@ inline: true
 related_posts: false
 ---
 
-[Efficient Generative Models Personalization via Optimal Experimental Design](https://openreview.net/pdf?id=VyWWg3xFu3) has been accepted at the Workshop on Models of Human Feedback for AI Alignment at **ICML 2025**
+[Efficient Generative Models Personalization via Optimal Experimental Design](https://openreview.net/pdf?id=VyWWg3xFu3) accepted at the Workshop on Models of Human Feedback for AI Alignment at **ICML 2025**
 
