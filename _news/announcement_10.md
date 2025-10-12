@@ -1,9 +1,9 @@
 ---
 layout: post
-date: 2025-09-18 15:59:00-0400
+date: 2025-07-08 15:59:00-0400
 inline: true
 related_posts: false
 ---
 
-[Flow Density Control: Generative Optimization Beyond Entropy-Regularized Fine-Tuning](https://openreview.net/pdf?id=zOgAxSMgcB) has been accepted as **Spotlight** at **NeurIPS 2025**
+[Constrained Molecular Generation via Sequential Flow Model Fine-Tuning](https://genbio-workshop.github.io/2025/) accepted as an **Oral** at the Frontiers in Probabilistic Inference Workshop at **NeurIPS 2025**
 
