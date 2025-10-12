@@ -5,5 +5,5 @@ inline: true
 related_posts: false
 ---
 
-[Flow Density Control: Generative Optimization Beyond Entropy-Regularized Fine-Tuning](https://openreview.net/pdf?id=zOgAxSMgcB) accepted as **Spotlight** at **NeurIPS 2025**
+[Flow Density Control: Generative Optimization Beyond Entropy-Regularized Fine-Tuning](https://openreview.net/pdf?id=zOgAxSMgcB) has been accepted as **Spotlight** at **NeurIPS 2025**
 
