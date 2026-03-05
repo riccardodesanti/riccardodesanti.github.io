@@ -5,5 +5,5 @@ inline: true
 related_posts: false
 ---
 
-[Flow Density Control: Generative Optimization Beyond Entropy-Regularized Fine-Tuning](https://openreview.net/pdf?id=zOgAxSMgcB) accepted as an **Oral** at the Workshop on Generative AI and Biology at **ICML 2025**
+[Flow Density Control: Generative Optimization Beyond Entropy-Regularized Fine-Tuning](https://arxiv.org/abs/2511.22640) accepted as an **Oral** at the Workshop on Generative AI and Biology at **ICML 2025**
 
