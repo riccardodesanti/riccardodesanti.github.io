@@ -11,13 +11,17 @@ profile:
   image: desanti_riccardo.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p></p>
+    <p>📍 Office: Annenberg 328</p>
+    <p>Caltech</p>
+    <p>Pasadena, CA, USA</p>
 
 news: true  # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
+
+Currently, I'm at [California Institute of Technology (Caltech)](https://www.caltech.edu), visiting the groups of [Yisong Yue](https://www.yisongyue.com) and [Frances Harnold](http://fhalab.caltech.edu).
 
 I am a PhD student in Machine Learning at the [ETH AI Center](https://ai.ethz.ch), advised by [Andreas Krause](https://las.inf.ethz.ch), [Niao He](https://odi.inf.ethz.ch), and [Kjell Jorner](https://dcl.ethz.ch), and affiliated with the [Institute of Machine Learning](https://ml.inf.ethz.ch) and [NCCR Catalysis](https://www.nccr-catalysis.ch). My current research focuses on **optimization and exploration via generative models** — bridging decision-making under uncertainty, optimization and generative modeling to tackle fundamental challenges in **large-scale scientific discovery**. I work on mathematical foundations, scalable learning methods, and real-world applications including [enzyme design for sustainable chemistry](https://www.nccr-catalysis.ch/research/approach/).
 
