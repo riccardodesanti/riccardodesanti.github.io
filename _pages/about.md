@@ -11,7 +11,7 @@ profile:
   image: desanti_riccardo.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>Office: Caltech, Annenberg 328</p>
+    <p>Office: Caltech, ANB 328</p>
     <p>Pasadena, CA, USA</p>
 
 news: true  # includes a list of news items
