@@ -1,4 +1,9 @@
-
-          <div class="publications">
-            {% bibliography -f {{ site.scholar.bibliography }} --group_by none --query @*[preprint=true]* %}
-          </div>
+{% capture preprints_html %}
+  {% bibliography -f {{ site.scholar.bibliography }} --group_by none --query @*[preprint=true]* %}
+{% endcapture %}
+{% if preprints_html contains '<li' %}
+  <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">selected pre-prints</a></h2>
+  <div class="publications">
+    {{ preprints_html }}
+  </div>
+{% endif %}
