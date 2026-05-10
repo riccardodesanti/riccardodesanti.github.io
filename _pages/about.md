@@ -4,7 +4,7 @@ title: About
 permalink: /
 subtitle: >
   <strong><a href="https://ai.ethz.ch" target="_blank" rel="noopener">ETH AI Center</a></strong>
-  PhD student. <strong>Exploration for Out-of-Distribution Discovery: from Theory to Molecules</strong>.
+  Ph.D. student. <strong>Exploration for Out-of-Distribution Discovery: from Theory to Molecules</strong>.
 
 profile:
   align: right
