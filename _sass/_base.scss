@@ -850,6 +850,11 @@ html.transition *:after {
 
 // Extra Markdown style (post Customization)
 .post {
+  .clearfix p {
+    text-align: justify;
+    hyphens: auto;
+  }
+
   .post-meta {
     color: var(--global-text-color-light);
     font-size: 0.875rem;
