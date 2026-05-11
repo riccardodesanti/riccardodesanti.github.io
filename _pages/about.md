@@ -21,7 +21,7 @@ selected_preprints: true # includes a list of papers marked as "preprint={true}"
 social: false  # includes social icons at the bottom of the page
 ---
 
-Currently, I'm at [California Institute of Technology (Caltech)](https://www.caltech.edu), visiting [Yisong Yue](https://www.yisongyue.com)'s group and [Frances H. Arnold](http://fhalab.caltech.edu)'s Nobel-awarded lab, working to close the loop between generative exploration and chemical wet-lab discovery. I am a Ph.D. student at ETH Zurich, advised by [Andreas Krause](https://las.inf.ethz.ch), [Niao He](https://odi.inf.ethz.ch), and [Kjell Jorner](https://dcl.ethz.ch), and supported by the [ETH AI Center](https://ai.ethz.ch) and [NCCR Catalysis](https://www.nccr-catalysis.ch). 
+Currently, I'm at [California Institute of Technology (Caltech)](https://www.caltech.edu), visiting [Yisong Yue](https://www.yisongyue.com)'s group and [Frances H. Arnold](http://fhalab.caltech.edu)'s Nobel-awarded lab, working to close the loop between generative exploration and chemical wet-lab discovery. I am a Ph.D. student at ETH Zurich, advised by [Andreas Krause](https://las.inf.ethz.ch), [Niao He](https://odi.inf.ethz.ch), and [Kjell Jorner](https://dcl.ethz.ch), and supported by the [ETH AI Center](https://ai.ethz.ch) and [NCCR Catalysis](https://www.nccr-catalysis.ch). I serve as a mentor for [LeadTheFuture](https://leadthefuture.tech), helping young students take their first steps into research.
 
 My research focuses on developing **generative algorithms for discovery beyond the data** — bridging flow and diffusion modeling, decision-making under uncertainty, and optimization, to enable **new-to-nature discovery**. Broadly, I aim to contribute to the foundations of a **science of generative discovery**: principled methods allowing generative models to explore complex spaces beyond pre-trained priors.
 
@@ -37,7 +37,7 @@ I work on mathematical foundations, scalable learning methods, and real-world ap
 - Stochastic Optimal Control
 -->
 
-I serve as a mentor for [LeadTheFuture](https://leadthefuture.tech), aiming to inspire young minds. In my spare time, I seek to understand life as intelligent computation through biochemistry, surf, and nature.
+<!-- I serve as a mentor for [LeadTheFuture](https://leadthefuture.tech), aiming to inspire young minds. In my spare time, I seek to understand life as intelligent computation through biochemistry, surf, and nature. -->
 
 
 Feel free to [reach out](mailto:rdesanti@ethz.ch) if you wish to collaborate, exchange ideas, or seek thesis supervision.
