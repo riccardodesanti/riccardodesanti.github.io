@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://riccardodesanti.github.io/sitemap.xml
+Sitemap: https://www.riccardodesanti.com/sitemap.xml
