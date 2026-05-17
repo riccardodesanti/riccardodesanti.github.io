@@ -178,16 +178,16 @@ blockquote {
 }
 
 .profile.float-right {
-  margin-left: 1rem;
+  margin-left: 1.82rem;
 }
 
 .profile.float-left {
-  margin-right: 1rem;
+  margin-right: 1.82rem;
 }
 
 @media (min-width: 576px) {
   .profile {
-    width: 30%;
+    width: 28.9%;
 
     .address {
       p {
@@ -1075,4 +1075,258 @@ nav[data-toggle="toc"] {
     margin-bottom: 0;
     padding-top: 0.5rem;
   }
+}
+
+// Research page: shared flex layout for text+image header (used by both
+// the top intro block and each themed section box)
+.research-header {
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+
+  .research-text {
+    flex: 1;
+    min-width: 0;
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      margin-bottom: 0.75rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    ul {
+      margin-bottom: 0;
+      padding-left: 1.25rem;
+
+      li {
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
+
+  .research-figure {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 45%;
+
+    img,
+    video {
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
+      display: block;
+    }
+
+    &.research-figure--small {
+      align-self: flex-start;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex: 0 0 var(--rf-w, 47%);
+      max-width: var(--rf-w, 47%);
+      margin-top: 0.35rem;
+
+      img,
+      video {
+        width: 100%;
+        height: auto;
+        max-height: none;
+      }
+    }
+  }
+
+  &:has(.research-figure--small) {
+    display: block;
+    gap: 0;
+
+    .research-figure--small {
+      float: right;
+      margin-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      align-self: auto;
+    }
+
+    .research-text ul {
+      clear: both;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .research-figure {
+      flex: none;
+      max-width: 100%;
+      align-self: stretch;
+
+      img,
+      video {
+        width: 100%;
+        height: auto;
+        max-height: none;
+      }
+    }
+
+    &:has(.research-figure--small) {
+      .research-figure--small {
+        float: none;
+        margin: 0;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+// Top-of-page intro block (no box, just text + image)
+.research-intro {
+  margin-bottom: 2rem;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Themed research sections (gray boxed areas)
+.research-area {
+  background-color: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.75rem;
+
+  > h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .publications {
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+
+    ol.bibliography {
+      background-color: transparent;
+
+      // Normalize the publication grid inside the boxed research area so
+      // entries line up with the box's padded content (h3/h4) instead of
+      // being offset by Bootstrap's negative row margins, and so the badge
+      // column has a predictable fixed width that doesn't squeeze the title.
+      li > .row {
+        margin-left: 0;
+        margin-right: 0;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: 1rem;
+
+        > .col-sm-2 {
+          flex: 0 0 7.5rem;
+          max-width: 7.5rem;
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        > .col-sm-8,
+        > .col-sm-10 {
+          flex: 1 1 0;
+          min-width: 0;
+          max-width: none;
+          padding-left: 0;
+          padding-right: 0;
+          overflow-wrap: break-word;
+          word-break: break-word;
+        }
+      }
+
+      @media (max-width: 576px) {
+        li > .row {
+          flex-wrap: wrap;
+
+          > .col-sm-2 {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .see-all {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+
+    a {
+      color: var(--global-theme-color);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.25rem 1.25rem;
+  }
+}
+
+// Highlight modifier: stacks an extra outer border (color #FFF5AD) around
+// the existing grey border without changing the box's outer dimensions.
+.research-area--highlight {
+  box-shadow: 0 0 0 4px #FFF5AD;
+}
+
+// Compact gray box (e.g. the contact/footer block on the About page) — same
+// visual treatment as .research-area but with reduced vertical padding.
+.contact-box {
+  background-color: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.6rem;
+  text-align: center;
+
+  // Override the global `.post .clearfix p { text-align: justify }` rule
+  // which has higher specificity than `.contact-box p`.
+  p {
+    text-align: center !important;
+    margin-bottom: 0.35rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+html[data-theme='dark'] .contact-box {
+  background-color: var(--global-card-bg-color);
+  border-color: var(--global-divider-color);
+}
+
+html[data-theme='dark'] .research-area {
+  background-color: var(--global-card-bg-color);
+  border-color: var(--global-divider-color);
 }
