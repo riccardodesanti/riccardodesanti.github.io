@@ -96,7 +96,7 @@ nav_order: 1
 <div class="research-area">
   <h3>Biochemistry Applications</h3>
   <div class="research-header">
-    <div class="research-figure research-figure--small" style="flex: 0 0 52%; max-width: 52%;">
+    <div class="research-figure research-figure--small" style="flex: 0 0 53%; max-width: 52%;">
       <img src="{{ '/assets/img/applications_animation.webp' | relative_url }}" alt="Real-World Science Applications animation">
     </div>
     <div class="research-text">
