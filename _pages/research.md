@@ -37,7 +37,7 @@ nav_order: 1
   <h3>Mathematical Foundations of Exploration and Discovery</h3>
   <div class="research-header">
     <div class="research-figure research-figure--small" style="flex: 0 0 27%; max-width: 27%;">
-      <img src="{{ '/assets/img/research_block_1.png' | relative_url }}" alt="Mathematical Foundations">
+      <img src="{{ '/assets/img/theory_animation.webp' | relative_url }}" alt="Mathematical Foundations animation">
     </div>
     <div class="research-text">
       <p>
@@ -96,8 +96,8 @@ nav_order: 1
 <div class="research-area">
   <h3>Biochemistry Applications</h3>
   <div class="research-header">
-    <div class="research-figure research-figure--small" style="flex: 0 0 47%; max-width: 47%;">
-      <img src="{{ '/assets/img/research_block_3.png' | relative_url }}" alt="Real-World Science Applications">
+    <div class="research-figure research-figure--small" style="flex: 0 0 52%; max-width: 52%;">
+      <img src="{{ '/assets/img/applications_animation.webp' | relative_url }}" alt="Real-World Science Applications animation">
     </div>
     <div class="research-text">
       <p>

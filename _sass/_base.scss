@@ -1184,10 +1184,15 @@ nav[data-toggle="toc"] {
     }
 
     &:has(.research-figure--small) {
+      // !important needed because the per-section inline styles
+      // (flex / max-width / margin) on .research-figure--small win on
+      // specificity at desktop sizes.
       .research-figure--small {
-        float: none;
-        margin: 0;
-        max-width: 100%;
+        float: none !important;
+        margin: 0 auto 0.75rem !important;
+        flex: 0 0 70% !important;
+        max-width: 70% !important;
+        align-self: center !important;
       }
     }
   }
