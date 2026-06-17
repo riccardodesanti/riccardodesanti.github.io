@@ -8,5 +8,12 @@
     };
   </script>
   <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@{{ site.mathjax.version }}/es5/tex-mml-chtml.js"></script>
-  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  {%- comment %}
+    The previous `<script src="https://polyfill.io/v3/polyfill.min.js?features=es6">`
+    tag was removed: the polyfill.io domain was hijacked in 2024 and started
+    serving warning/malware banners, which showed up as a stray box on the site.
+    MathJax v3 runs natively in any modern (ES6) browser, so no polyfill is
+    needed. If you ever need it back, use a safe mirror, e.g.
+    https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6
+  {%- endcomment %}
   {%- endif %}
