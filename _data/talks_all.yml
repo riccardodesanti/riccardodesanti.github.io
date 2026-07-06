@@ -1,0 +1,80 @@
+# Full chronological list of talks, one row per talk *instance* (i.e. one
+# (title, venue) pair). Displayed on /talks/. Order in this file is the
+# render order on the page (put the most recent first).
+#
+# Each entry has:
+#   date:    (optional) "YYYY-MM-DD" or "YYYY-MM" — shown as a formatted
+#            date on the page. If omitted, `year` is used instead.
+#   year:    required fallback when `date` is missing
+#   title:   talk title
+#   venue:   { name, url } — url is optional
+#   note:    (optional) extra plain-text context (city, workshop, etc.)
+#   tag:     (optional) small italic tag, e.g. "(scheduled)"
+#   slides:  (optional) URL or /assets/pdf/... to slides; when set the title becomes a link
+
+- year: 2026
+  date: "2026-07-12"     # fill in when scheduled
+  title: "Active Generative Models for Out-of-Distribution Discovery: from Theory to Molecules"
+  venue: { name: "UNIST", url: "https://www.unist.ac.kr" }
+  note: "South Korea &mdash; post-ICML Workshop hosted by the Active Generative Agents Lab"
+  tag: "(scheduled)"
+
+- year: 2026
+  date: "2026-07-02"
+  title: "Foundations of Generative Discovery Beyond the Data via Flow and Diffusion Models"
+  venue: { name: "Stanford", url: "https://www.stanford.edu" }
+  slides: "/assets/pdf/talk_generative_discovery_2026.pdf"
+
+- year: 2026
+  date: "2026-06-18"
+  title: "Foundations of Generative Discovery Beyond the Data via Flow and Diffusion Models"
+  venue: { name: "UCSD", url: "https://ucsd.edu" }
+  slides: "/assets/pdf/talk_generative_discovery_2026.pdf"
+
+- year: 2026
+  date: "2026-06-13"
+  title: "Foundations of Generative Discovery Beyond the Data via Flow and Diffusion Models"
+  venue: { name: "UCLA", url: "https://www.ucla.edu" }
+  slides: "/assets/pdf/talk_generative_discovery_2026.pdf"
+
+- year: 2026
+  date: "2026-06-11"
+  title: "Foundations of Generative Discovery Beyond the Data via Flow and Diffusion Models"
+  venue: { name: "UC Irvine", url: "https://uci.edu" }
+  slides: "/assets/pdf/talk_generative_discovery_2026.pdf"
+
+- year: 2026
+  date: "2026-06-30"
+  title: "Foundations of Generative Discovery Beyond the Data via Flow and Diffusion Models"
+  venue: { name: "UC Berkeley", url: "https://www.berkeley.edu" }
+  slides: "/assets/pdf/talk_generative_discovery_2026.pdf"
+
+- year: 2026
+  date: "2026-06-24"
+  title: "Foundations of Generative Discovery Beyond the Data via Flow and Diffusion Models"
+  venue: { name: "Caltech", url: "https://www.caltech.edu" }
+  slides: "/assets/pdf/talk_generative_discovery_2026.pdf"
+
+- year: 2026
+  date: "2026-06-27"
+  title: "Generative Discovery Beyond the Data with Flow Models: from Algorithms to Molecules"
+  venue: { name: "Genesis Molecular AI", url: "https://www.genesis.ml" }
+  note: "San Mateo, California"
+
+- year: 2024
+  date: ""
+  title: "Towards Generative Decision-Making for Scientific Discovery"
+  venue: { name: "ETH AI Center", url: "https://ai.ethz.ch" }
+  note: "Zurich, Switzerland"
+
+- year: 2023
+  date: ""
+  title: "Towards Convex Reinforcement Learning for the Real-World"
+  venue: { name: "ETH AI Center", url: "https://ai.ethz.ch" }
+  note: "Zurich, Switzerland (as an M.Sc. student)"
+
+- year: 2022
+  date: ""
+  title: "The Role of Causal Structure in Unsupervised Reinforcement Learning"
+  venue: { name: "Technische Universität Dresden", url: "https://tu-dresden.de" }
+  note: "Dresden, Germany &mdash; only M.Sc. student as RL workshop speaker"

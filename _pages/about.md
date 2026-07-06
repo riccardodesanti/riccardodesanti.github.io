@@ -19,6 +19,7 @@ news: true  # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 selected_preprints: true # includes a list of papers marked as "preprint={true}"
+selected_talks: true # includes the list of talks from _data/talks.yml
 social: false  # includes social icons at the bottom of the page
 ---
 

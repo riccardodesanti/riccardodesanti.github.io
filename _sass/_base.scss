@@ -46,6 +46,17 @@ table.table a {
   &:hover:after :not(.nav-item.dropdown) {
     width: 100%;
   }
+
+  // Inline emphasis inside a link (e.g. **bold** or *italic* in Markdown)
+  // otherwise inherits the default text color from the `strong` / `em` rule
+  // above and renders black inside violet links — force it to follow the
+  // link color instead.
+  strong,
+  em,
+  b,
+  i {
+    color: inherit;
+  }
 }
 
 .table-dark {
@@ -1301,6 +1312,66 @@ nav[data-toggle="toc"] {
 // the existing grey border without changing the box's outer dimensions.
 .research-area--highlight {
   box-shadow: 0 0 0 4px #FFF5AD;
+}
+
+// Selected Talks section on the About page (year / title / venue).
+// Layout is a simple flex row per talk — no table, no borders, no box.
+.talks {
+  margin-top: 2rem;   // match the vertical breathing room above .publications
+
+  .talk {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    margin-bottom: 0.85rem;
+  }
+
+  .talk-year {
+    flex: 0 0 3rem;
+    font-weight: 600;
+    color: var(--global-text-color-light);
+  }
+
+  .talk-body {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .talk-title {
+    font-weight: 600;
+  }
+
+  .talk-venue {
+    color: var(--global-text-color-light);
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+  }
+
+  .talk-tag {
+    font-style: italic;
+    color: var(--global-text-color-light);
+  }
+
+  @media (max-width: 576px) {
+    .talk {
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .talk-year {
+      flex: none;
+    }
+  }
+}
+
+// Wider date column on the dedicated /talks/ page (formatted dates like
+// "Jun 10, 2026" don't fit the 3rem year column used on the About page).
+.talks.talks--full {
+  margin-top: 1rem;
+
+  .talk-year {
+    flex: 0 0 7rem;
+    font-variant-numeric: tabular-nums;
+  }
 }
 
 // Compact gray box (e.g. the contact/footer block on the About page) — same
