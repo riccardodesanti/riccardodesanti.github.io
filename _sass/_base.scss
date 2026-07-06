@@ -1372,6 +1372,16 @@ nav[data-toggle="toc"] {
     flex: 0 0 7rem;
     font-variant-numeric: tabular-nums;
   }
+
+  // On narrow screens the parent .talks .talk switches to `flex-direction: column`,
+  // which turns `flex: 0 0 7rem` into a fixed *height* of 7rem for the date row —
+  // producing a huge empty gap between the date and the talk title. Override with
+  // higher specificity than the mobile rule inside `.talks`.
+  @media (max-width: 576px) {
+    .talk-year {
+      flex: none;
+    }
+  }
 }
 
 // Compact gray box (e.g. the contact/footer block on the About page) — same
