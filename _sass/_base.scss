@@ -82,6 +82,13 @@ blockquote {
     margin-bottom: 0;
   }
 
+  // Slightly smaller variant used for page-top callouts (e.g. the
+  // "Interested in working with me?" banner on /teaching/). Keeps the
+  // violet-border look but with body-sized text.
+  &.page-callout {
+    font-size: 1rem;
+  }
+
   /* Tips, warnings, and dangers blockquotes */
   &.block-tip {
     border-color: var(--global-tip-block);

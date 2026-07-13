@@ -29,7 +29,7 @@
         {%- if page.title == nil or page.title == "" -%}
             {{ page.date | date: "%Y" }} | {{ title }}
         {%- else -%}
-            {{ page.title }} | {{ title }}
+            {{ page.nav_title | default: page.title }} | {{ title }}
         {%- endif -%}
     {%- else -%}
         {{ title }}{%- if page.tagline %} | {{ page.tagline }}{%- endif -%}

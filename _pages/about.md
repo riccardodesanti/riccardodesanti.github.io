@@ -25,7 +25,7 @@ social: false  # includes social icons at the bottom of the page
 
 Currently, I'm at [California Institute of Technology (Caltech)](https://www.caltech.edu), visiting [Yisong Yue](https://www.yisongyue.com)'s group and [Frances H. Arnold](http://fhalab.caltech.edu)'s Nobel-awarded lab, working to close the loop between generative exploration and chemical wet-lab discovery.  I am a Ph.D. student at ETH Zurich, advised by [Andreas Krause](https://las.inf.ethz.ch), [Niao He](https://odi.inf.ethz.ch), and [Kjell Jorner](https://dcl.ethz.ch), and supported by the [ETH AI Center](https://ai.ethz.ch) and [NCCR Catalysis](https://www.nccr-catalysis.ch).  I mentor [LeadTheFuture](https://leadthefuture.tech) students taking their first steps into research.
 
-My research focuses on developing **generative algorithms for discovery beyond the data** — bridging flow and diffusion modeling, decision-making under uncertainty, and optimization, to enable **new-to-nature discovery**. Broadly, I aim to contribute to the foundations of a **science of generative discovery**: principled methods that move generative modeling beyond distribution matching and toward the discovery of new, valid, and useful structures, designs, and hypotheses. Check out the [Research Overview]({{ '/research/' | relative_url }}) page for more research information.
+My research focuses on developing **generative algorithms for discovery beyond the data** — bridging flow and diffusion modeling, decision-making under uncertainty, and optimization, to enable **new-to-nature discovery**. Broadly, I aim to contribute to the foundations of a **science of generative discovery**: principled methods that move generative modeling beyond distribution matching and toward the discovery of new, valid, and useful structures, designs, and hypotheses. Check out the [Research]({{ '/research/' | relative_url }}) page for more research information.
 
 This research program builds on my earlier work on the foundations of exploration in RL, which includes an **[Outstanding Paper Award at ICML](https://icml.cc/virtual/2022/oral/16290)** with [Marcello Restelli](https://scholar.google.com/citations?user=xdgxRiEAAAAJ&hl=en), and research visits with [Michael Bronstein](https://www.cs.ox.ac.uk/people/michael.bronstein/) at the [University of Oxford](https://www.ox.ac.uk) and [Imperial College London](https://www.imperial.ac.uk) on geometric and causal inductive biases for exploration.
 
@@ -44,7 +44,7 @@ I work on mathematical foundations, scalable learning methods, and real-world ap
 
 <div class="contact-box" markdown="1">
 
-Feel free to [reach out](mailto:rdesanti@ethz.ch) if you wish to collaborate, exchange ideas, or seek thesis supervision.
+Feel free to [reach out](mailto:rdesanti@ethz.ch) if you wish to collaborate, exchange ideas, or seek project or thesis supervision.
 
 **Contacts:** &nbsp; [rdesanti@ethz.ch](mailto:rdesanti@ethz.ch) &nbsp; \| &nbsp; [Google Scholar](https://scholar.google.com/citations?user=K7qyOj0AAAAJ&hl=en) &nbsp; \| &nbsp; [Twitter](https://x.com/r_de_santi) &nbsp; \| &nbsp; [LinkedIn](https://www.linkedin.com/in/riccardo-de-santi-426139135/) &nbsp; \| &nbsp; [Github](https://github.com/riccardodesanti)
 

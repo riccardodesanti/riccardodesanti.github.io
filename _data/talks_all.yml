@@ -17,7 +17,7 @@
   title: "Active Generative Models for Out-of-Distribution Discovery: from Theory to Molecules"
   venue: { name: "UNIST", url: "https://www.unist.ac.kr" }
   note: "South Korea &mdash; post-ICML Workshop hosted by the Active Generative Agents Lab"
-  tag: "(scheduled)"
+  slides: "/assets/pdf/active_OOD_discovery_UNIST.pdf"
 
 - year: 2026
   date: "2026-07-02"

@@ -2,6 +2,7 @@
 layout: page
 permalink: /research/
 title: Research Overview
+nav_title: Research
 display_title: "Research: Generative Discovery Beyond the Data"
 nav: true
 nav_order: 1
