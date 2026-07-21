@@ -14,10 +14,10 @@
 #            venue name, e.g. "(scheduled)" for upcoming talks.
 - year: 2026
   title: "Active Generative Models for Out-of-Distribution Discovery: from Theory to Molecules"
-  tag: "(scheduled)"
   venues:
     - { name: "UNIST", url: "https://www.unist.ac.kr" }
   note: "South Korea &mdash; post-ICML Workshop hosted by the Active Generative Agents Lab"
+  slides: "/assets/pdf/active_OOD_discovery_UNIST.pdf"
 
 - year: 2026
   title: "Foundations of Generative Discovery Beyond the Data via Flow and Diffusion Models"

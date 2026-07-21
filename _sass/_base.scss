@@ -1346,12 +1346,32 @@ nav[data-toggle="toc"] {
 
   .talk-title {
     font-weight: 600;
+    color: var(--global-text-color);
   }
 
   .talk-venue {
     color: var(--global-text-color-light);
     font-size: 0.9rem;
     margin-top: 0.15rem;
+  }
+
+  .talk-links {
+    margin-top: 0.15rem;
+
+    a.btn {
+      color: var(--global-text-color);
+      border: 1px solid var(--global-text-color);
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+      margin-left: 0;
+
+      &:hover {
+        color: var(--global-theme-color);
+        border-color: var(--global-theme-color);
+      }
+    }
   }
 
   .talk-tag {

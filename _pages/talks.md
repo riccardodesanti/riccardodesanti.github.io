@@ -24,11 +24,7 @@ nav_order: 3
       {%- endif -%}
     </span>
     <div class="talk-body">
-      {% if talk.slides and talk.slides != '' -%}
-        <a class="talk-title" href="{{ talk.slides | relative_url }}">{{ talk.title }}</a>
-      {%- else -%}
-        <span class="talk-title">{{ talk.title }}</span>
-      {%- endif %}
+      <span class="talk-title">{{ talk.title }}</span>
       <div class="talk-venue">
         {%- if talk.venue.url -%}
           <a href="{{ talk.venue.url }}" target="_blank" rel="noopener"><em>{{ talk.venue.name }}</em></a>
@@ -38,6 +34,11 @@ nav_order: 3
         {%- if talk.tag %} <span class="talk-tag">{{ talk.tag }}</span>{% endif -%}
         {%- if talk.note %}, {{ talk.note }}{%- endif -%}
       </div>
+      {%- if talk.slides and talk.slides != '' %}
+      <div class="talk-links">
+        <a href="{{ talk.slides | relative_url }}" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener">Slides</a>
+      </div>
+      {%- endif %}
     </div>
   </div>
 {% endfor %}
