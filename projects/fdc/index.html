@@ -251,8 +251,8 @@
         <span class="step-num">4</span>
         <div class="step-body">
           <p><strong>Return $\pi_K$.</strong>
-            After $K$ inner problems, output the final policy. In our experiments $K$ is small (often
-            $K = 2\ldots10$) — the heavy lifting is done by the linear solver.</p>
+            After $K$ inner problems, output the final policy. In our experiments $K$ is small,
+            typically $K = 2\ldots10$.</p>
         </div>
       </div>
     </div>
@@ -404,7 +404,7 @@
         <span>(d) SQ evaluation</span>
       </div>
       <figcaption>
-        FDC sacrifices average reward to unlock rare, exceptionally-high-reward regions — the tail is exactly what we care about in scientific discovery.
+        FDC sacrifices average reward to reach rare, high-reward regions in the tail.
       </figcaption>
     </figure>
 
@@ -444,7 +444,7 @@
       <em>entropy</em> with strength $\alpha$ shifts probability mass into low-coverage regions. Reducing
       $\alpha$ from $0.5$ to $0.0$ trades off staying close to the prior against exploring — Monte Carlo entropy
       grows from $6.78$ (pre) to $7.00$ ($\alpha=0.5$) to $7.14$ ($\alpha=0$). This gives explicit,
-      knob-controllable exploration — a capability not supported by prior manifold-exploration methods.
+      tunable exploration — a capability not supported by prior manifold-exploration methods.
     </p>
 
     <figure class="results">
@@ -464,7 +464,7 @@
     <h3>Text-to-image: creative bridge design</h3>
 
     <p>
-      Scaling up: we fine-tune <strong>Stable Diffusion 1.4</strong> with prompt <em>"A creative bridge design"</em>
+      We fine-tune <strong>Stable Diffusion 1.4</strong> with prompt <em>"A creative bridge design"</em>
       to maximize KL-regularized entropy ($\alpha = 0.001$) for $K = 2$ iterations. On a sample of 100 generations
       the Vendi diversity score climbs from <strong>2.36</strong> (pre-trained) to <strong>2.47</strong> (FDC), and
       the CLIP prompt-alignment score also improves from <strong>0.19</strong> to <strong>0.22</strong> — more diverse
@@ -499,9 +499,9 @@
     <p>
       We fine-tune <strong>FlowMol</strong> (pre-trained on QM9) to discover molecules minimizing single-point total
       energy computed at the GFN1-xTB level. We maximize the <em>superquantile</em> of the negative energy at
-      $\beta = 0.998$ — we do not care about average sample quality, we care about the top 0.2% of designs.
-      Consistent with the objective: AM has a higher mean negative energy (<strong>29.1</strong>) than FDC
-      (<strong>27.5</strong>), but on the top-0.2% tail — where genuine leads live — FDC beats AM
+      $\beta = 0.998$ — we do not aim to maximize the average sample reward, but rather that of the top 0.2%
+      of designs. Consistent with the objective: AM has a higher mean negative energy (<strong>29.1</strong>)
+      than FDC (<strong>27.5</strong>), but on the top-0.2% tail FDC beats AM
       (<strong>41.8</strong> vs. <strong>39.7</strong>).
     </p>
 
@@ -517,8 +517,7 @@
         <span>(c) FDC-generated design</span>
       </div>
       <figcaption>
-        FDC deliberately trades average reward for a heavier right tail — exactly what novelty-seeking scientific
-        discovery calls for.
+        FDC trades average reward for a heavier right tail.
       </figcaption>
     </figure>
 
@@ -584,8 +583,8 @@
 
     <p style="color: var(--text-muted); font-size: 0.9rem;">
       Bold marks the best value in each row. Numbers are means over seeds; see the paper for standard deviations and
-      additional metrics. The pattern is consistent: whenever the target task is <em>not</em> plain expected-reward
-      maximization, Adjoint Matching's linear objective misses it, while FDC's mirror-descent reduction gets it right.
+      additional metrics. Across all tasks that are <em>not</em> plain expected-reward maximization, Adjoint Matching's
+      linear objective is insufficient, while FDC's mirror-descent reduction remains effective.
     </p>
   </div>
 </section>
