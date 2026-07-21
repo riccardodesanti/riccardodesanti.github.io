@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flow Density Control — Generative Optimization Beyond Entropy-Regularized Fine-Tuning</title>
+  <meta name="description"
+        content="Flow Density Control (FDC): a distributional fine-tuning algorithm that optimizes arbitrary utilities and preserves prior information under arbitrary divergences, going beyond KL-regularized reward maximization for flow and diffusion generative models.">
+
+  <!-- OpenGraph / Twitter -->
+  <meta property="og:type"        content="article">
+  <meta property="og:title"       content="Flow Density Control — Generative Optimization Beyond Entropy-Regularized Fine-Tuning">
+  <meta property="og:description" content="A mirror-descent fine-tuning scheme that reduces optimization of general utilities under general divergences to a sequence of standard linear fine-tuning tasks.">
+  <meta property="og:image"       content="https://www.riccardodesanti.com/projects/fdc/static/images/teaser_gen_opt.png">
+  <meta property="og:url"         content="https://www.riccardodesanti.com/projects/fdc/">
+  <meta name="twitter:card"       content="summary_large_image">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
+
+  <!-- KaTeX for math -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+        integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+        crossorigin="anonymous">
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+          integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+          crossorigin="anonymous"></script>
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+          integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+          crossorigin="anonymous"
+          onload="renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '$',  right: '$',  display: false},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false
+          });"></script>
+
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<!-- ============================== HERO ============================== -->
+<header class="hero">
+  <div class="container">
+    <h1>Flow Density Control: Generative Optimization Beyond Entropy-Regularized Fine-Tuning</h1>
+
+    <p class="venue">
+      <strong>NeurIPS 2025 Spotlight</strong> &middot; a distributional fine-tuning scheme for flow &amp; diffusion generative models
+    </p>
+
+    <p class="authors">
+      <a href="https://x.com/desariky" target="_blank" rel="noopener">Riccardo De Santi</a>,
+      Marin Vlastelica,
+      <a href="https://x.com/yapinghsieh" target="_blank" rel="noopener">Ya-Ping Hsieh</a>,
+      Zebang Shen,
+      Niao He,
+      <a href="https://x.com/arkrause" target="_blank" rel="noopener">Andreas Krause</a>
+    </p>
+
+    <p class="affiliations">
+      ETH Zurich &nbsp;&middot;&nbsp; ETH AI Center
+    </p>
+
+    <div class="actions">
+      <a class="btn" href="https://arxiv.org/abs/2511.22640" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+        arXiv
+      </a>
+      <a class="btn btn-outline" href="https://arxiv.org/pdf/2511.22640" target="_blank" rel="noopener">PDF</a>
+      <a class="btn btn-outline" href="https://github.com/riccardodesanti/flow-density-control" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-1.94c-3.2.7-3.87-1.55-3.87-1.55-.53-1.35-1.29-1.71-1.29-1.71-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.41.36.78 1.06.78 2.14v3.17c0 .3.21.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        Code
+      </a>
+      <a class="btn btn-outline" href="#bibtex">BibTeX</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================== TEASER ============================== -->
+<div class="teaser">
+  <div class="container">
+    <figure>
+      <img src="static/images/teaser_gen_opt.png"
+           alt="Generative optimization via flow-model fine-tuning: from a pre-trained policy inducing density p_1^pre toward an optimal policy inducing p_1^* that maximizes a utility F while remaining close to the pre-trained model under an arbitrary divergence D."
+           style="max-width:640px;">
+      <figcaption>
+        <strong>Generative optimization via flow-model fine-tuning.</strong>
+        Starting from noise, a pre-trained flow $\pi^{\mathrm{pre}}$ induces the terminal density $p_1^{\mathrm{pre}}$.
+        Flow Density Control (FDC) fine-tunes it into a new policy $\pi^{\star}$ whose terminal density $p_1^{\star}$
+        <em>maximizes an arbitrary utility functional $\mathcal{F}$</em> (e.g., a risk-averse or novelty-seeking objective, an experiment-design criterion, a diversity measure),
+        while remaining close to $p_1^{\mathrm{pre}}$ under an <em>arbitrary divergence $\mathcal{D}$</em> (KL, Rényi, optimal transport, MMD, …).
+      </figcaption>
+    </figure>
+  </div>
+</div>
+
+<!-- ============================== ABSTRACT ============================== -->
+<section id="abstract">
+  <div class="container">
+    <h2>Abstract</h2>
+    <p>
+      Adapting large-scale foundation flow and diffusion generative models to optimize task-specific objectives while preserving prior information is crucial for real-world applications such as molecular design, protein docking, and creative image generation. Existing principled fine-tuning methods aim to maximize the expected reward of generated samples, while retaining knowledge from the pre-trained model via KL-divergence regularization. In this work, we tackle the significantly more general problem of optimizing <em>general utilities</em> beyond average rewards, including risk-averse and novelty-seeking reward maximization, diversity measures for exploration, and experiment design objectives among others. Likewise, we consider more general ways to preserve prior information beyond KL-divergence, such as optimal transport distances and Rényi divergences. To this end, we introduce <strong>Flow Density Control (FDC)</strong>, a simple algorithm that reduces this complex problem to a specific sequence of simpler fine-tuning tasks, each solvable via scalable established methods. We derive convergence guarantees for the proposed scheme under realistic assumptions by leveraging recent understanding of mirror flows. Finally, we validate our method on illustrative settings, text-to-image, and molecular design tasks, showing that it can steer pre-trained generative models to optimize objectives and solve practically relevant tasks beyond the reach of current fine-tuning schemes.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== MOTIVATION ============================== -->
+<section id="motivation">
+  <div class="container">
+    <h2>Why go beyond KL-regularized reward maximization?</h2>
+
+    <p>
+      Current principled fine-tuning schemes for flow and diffusion models — Adjoint Matching and its relatives — target a
+      single problem: maximize the <em>expected</em> reward of generated samples while staying close to the pre-trained
+      model under a <em>KL</em> divergence. Formally, they solve
+    </p>
+
+    <p style="text-align:center;">$$\arg\max_{\pi}\; \mathbb{E}_{x \sim p_1^\pi}[\,r(x)\,]\;-\;\alpha\, D_{\mathrm{KL}}\!\bigl(p_1^{\pi}\,\|\,p_1^{\mathrm{pre}}\bigr).$$</p>
+
+    <p>
+      This is a natural target — but many practically relevant scientific and creative objectives are <em>not</em> linear
+      expectations, and KL is not always the right way to keep the prior.
+    </p>
+
+    <figure>
+      <img src="static/images/table_capabilities.png"
+           alt="Current fine-tuning methods handle only expected reward maximization with KL regularization; this work extends both utility and divergence to arbitrary functionals."
+           style="max-width:320px; margin:0.5rem auto; display:block;">
+      <figcaption style="text-align:center;">
+        <strong>Current:</strong> linear utility + KL. &nbsp;<strong>FDC:</strong> arbitrary $\mathcal{F}$ and $\mathcal{D}$.
+      </figcaption>
+    </figure>
+
+    <div class="callout">
+      <span class="callout-label">Generative Optimization (GO)</span>
+      Given a pre-trained flow $\pi^{\mathrm{pre}}$, a utility functional $\mathcal{F}$, and a divergence $\mathcal{D}$,
+      find a policy $\pi^{\star}$ inducing terminal density $p_1^{\pi^{\star}}$ solving
+      $$\arg\max_{\pi}\; \mathcal{F}\!\bigl(p_1^\pi\bigr)\;-\;\alpha\,\mathcal{D}\!\bigl(p_1^{\pi}\,\|\,p_1^{\mathrm{pre}}\bigr),
+      \quad \text{s.t. controlled continuity equation.}$$
+    </div>
+
+    <p>
+      Concrete tasks that fall outside standard KL-regularized reward maximization include
+      <strong>risk-averse</strong> generation (control the worst-case cost — validity, safety),
+      <strong>novelty-seeking</strong> generation (control the upper tail — scientific discovery),
+      <strong>manifold exploration</strong> and <strong>model de-biasing</strong> via entropy maximization,
+      <strong>optimal experiment design</strong>, and <strong>optimal-transport-regularized</strong> reward
+      maximization when the geometry of the design space is known (e.g. protein docking).
+      All of these are captured by choosing appropriate $\mathcal{F}$ and $\mathcal{D}$ in GO.
+    </p>
+
+    <h3>An expressivity hierarchy</h3>
+
+    <p>
+      Writing $\mathcal{G}(p_1^\pi) := \mathcal{F}(p_1^\pi) - \alpha\,\mathcal{D}(p_1^\pi\,\|\,p_1^{\mathrm{pre}})$, three
+      strictly increasing problem classes emerge:
+    </p>
+
+    <ul>
+      <li><strong>Linear GO</strong> — $\mathcal{F}$ is a linear functional (expected reward) and $\mathcal{D}$ is KL. This is exactly what current entropy-regularized control solves.</li>
+      <li><strong>Convex GO</strong> — $\mathcal{G}$ is concave in $p_1^\pi$. Includes entropy maximization, log-barrier constrained generation, MMD regularization, and several experiment-design criteria.</li>
+      <li><strong>General GO</strong> — $\mathcal{G}$ can be arbitrary. Includes CVaR, superquantile, variance penalization, Wasserstein and Rényi divergences, diverse-modes discovery, and much more.</li>
+    </ul>
+
+    <figure>
+      <img src="static/images/control_hierarchy.png"
+           alt="Expressivity hierarchy of generative optimization: Linear GO is a strict subset of Convex GO, which is a strict subset of General GO. Standard entropy-regularized control tackles only Linear GO; FDC covers Convex and General GO."
+           style="max-width:380px; margin:0.5rem auto; display:block;">
+      <figcaption style="text-align:center;">
+        <strong>Linear GO $\subset$ Convex GO $\subset$ General GO.</strong>
+        Entropy-regularized control tackles only the innermost class; FDC covers all three.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================== METHOD ============================== -->
+<section id="method">
+  <div class="container">
+    <h2>Flow Density Control (FDC)</h2>
+
+    <p>
+      FDC solves GO by <em>reduction</em>: rather than designing a bespoke solver for each new $\mathcal{F},\mathcal{D}$
+      pair, it turns a non-linear generative optimization problem into a short sequence of the standard <em>linear</em>
+      fine-tuning problems that entropy-regularized control already solves well.
+    </p>
+
+    <h3>The core idea in one line</h3>
+
+    <p>
+      Given a functional $\mathcal{G}: \mathcal{P}(\mathcal{X}) \to \mathbb{R}$, its <em>first variation</em>
+      $\delta \mathcal{G}(\mu)$ is an infinite-dimensional gradient in the space of probability measures:
+    </p>
+
+    <p style="text-align:center;">$$\mathcal{G}(\mu + \epsilon\,\mu') = \mathcal{G}(\mu) + \epsilon\,\langle \mu',\,\delta \mathcal{G}(\mu)\rangle + o(\epsilon).$$</p>
+
+    <p>
+      Linearizing $\mathcal{G}$ at the current policy $\pi_{k-1}$ turns the outer non-linear problem into an inner
+      <em>Entropy-Regularized First Variation Maximization</em>:
+    </p>
+
+    <div class="callout">
+      <span class="callout-label">Inner subproblem (linear GO)</span>
+      $$\arg\max_{\pi}\; \bigl\langle\,\delta \mathcal{G}\!\bigl(p_1^{\pi_{k-1}}\bigr),\; p_1^{\pi}\bigr\rangle \;-\; \eta_k\, D_{\mathrm{KL}}\!\bigl(p_1^{\pi}\,\|\,p_1^{\pi_{k-1}}\bigr).$$
+      This is a standard linear reward fine-tuning problem — solvable off-the-shelf by Adjoint Matching, RLHF-style methods, or any entropy-regularized flow-matching solver.
+    </div>
+
+    <h3>The four moves in a single iteration</h3>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <div class="step-body">
+          <p><strong>Linearize the functional.</strong>
+            At the current policy $\pi_{k-1}$ inducing density $p_1^{k-1}$, compute (or estimate) the
+            <em>gradient of the first variation</em>
+            $\nabla_x g_k(x) := \nabla_x \delta \mathcal{G}(p_1^{k-1})(x)$.
+            This scalar field plays the role of a per-sample <em>reward gradient</em>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">2</span>
+        <div class="step-body">
+          <p><strong>Solve one linear fine-tuning subproblem.</strong>
+            Run a scalable entropy-regularized solver (e.g. Adjoint Matching) with $g_k$ as reward and strength $\eta_k$:
+          </p>
+          <p style="text-align:center;">$$\pi_k \leftarrow \mathrm{LinearFineTuningSolver}(\nabla_x g_k,\, \eta_k,\, \pi_{k-1}).$$</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">3</span>
+        <div class="step-body">
+          <p><strong>Iterate.</strong>
+            The next iteration re-linearizes $\mathcal{G}$ at $\pi_k$, so the sequence of linear surrogates
+            gradually tracks the true non-linear landscape — this is <em>mirror descent</em> in the space of densities.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">4</span>
+        <div class="step-body">
+          <p><strong>Return $\pi_K$.</strong>
+            After $K$ inner problems, output the final policy. In our experiments $K$ is small (often
+            $K = 2\ldots10$) — the heavy lifting is done by the linear solver.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Formal algorithm</h3>
+
+    <div class="algorithm">
+      <div class="algo-title">Algorithm 1 — Flow Density Control (FDC)</div>
+      <p class="algo-inputs">
+        <strong>Input:</strong> pre-trained flow $\pi^{\mathrm{pre}}$, utility functional $\mathcal{G} = \mathcal{F} - \alpha\,\mathcal{D}$, iterations $K$, regularization schedule $\{\eta_k\}_{k=1}^{K}$.
+      </p>
+      <ol>
+        <li>Initialize $\pi_0 \leftarrow \pi^{\mathrm{pre}}$.</li>
+        <li><strong>for</strong> $k = 1, 2, \dots, K$ <strong>do</strong>
+          <ol style="list-style:lower-alpha; margin-top:0.3rem;">
+            <li>Estimate $\;\nabla_x g_k(x) \;=\; \nabla_x\, \delta \mathcal{G}\!\bigl(p_1^{k-1}\bigr)(x)$.</li>
+            <li>Solve the linear subproblem: $\;\pi_k \leftarrow \mathrm{LinearFineTuningSolver}(\nabla_x g_k,\, \eta_k,\, \pi_{k-1})$.</li>
+          </ol>
+        </li>
+        <li><strong>end for</strong>; return $\pi \coloneqq \pi_K$.</li>
+      </ol>
+    </div>
+
+    <h3>Do we actually need density estimation?</h3>
+
+    <p>
+      Among the practically-relevant functionals we consider, <em>only</em> Rényi divergences require estimating
+      a density, and the recent Itô density estimator suffices. All others admit closed-form or sample-based
+      gradients of the first variation. For example:
+    </p>
+
+    <p style="text-align:center;">
+      $$
+      \nabla_x\, \delta \mathcal{Q}(p^\pi)(x) \;=\;
+      \begin{cases}
+        -\nabla_x \log p^\pi(x) & \text{Entropy } (\mathcal{H})\\[4pt]
+        \nabla_x r(x)\,\mathbf{1}\{r(x) \le q^r_\beta(p^\pi)\} & \text{CVaR}\\[4pt]
+        \nabla_x \phi^\star(x),\;\; \phi^\star \in \arg\max_{\|\nabla \phi\|\le 1} \langle \phi,\, p^\pi - p^{\mathrm{pre}}\rangle & \text{Wasserstein-1}
+      \end{cases}
+      $$
+    </p>
+
+    <p>
+      Concretely: for entropy, the score is a known linear transform of the learned velocity field; for CVaR, any
+      sample-based quantile estimator works; for $W_1$, $\phi^\star$ is precisely the discriminator in a Wasserstein-GAN
+      and can be learned with standard methods.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== THEORY ============================== -->
+<section id="theory">
+  <div class="container">
+    <h2>Convergence guarantees via mirror descent</h2>
+
+    <p>
+      A natural worry with linearize-and-solve schemes is that iterating linear surrogates may fail to converge, or
+      that noise in the first-variation gradient and inexactness of the inner solver could derail the outer loop.
+      Reformulating GO as constrained optimization over stochastic processes and invoking the notion of
+      <em>relative smoothness</em> on the space of probability measures, FDC becomes a mirror-ascent scheme with an
+      entropic mirror map. We analyze two regimes.
+    </p>
+
+    <div class="callout">
+      <span class="callout-label">Idealized: concave $\mathcal{G}$, exact oracles</span>
+      Under exact estimation of $\nabla_x\, \delta \mathcal{G}$ and exact solution of the inner linear subproblem,
+      with step-size $\eta_k = L$, FDC's iterates satisfy
+      $$\mathcal{G}(p_1^\star) - \mathcal{G}(p_1^\pi)\;\le\;\frac{L - \ell}{K}\,D_{\mathrm{KL}}\!\bigl(p_1^\star\,\|\,p_1^{\mathrm{pre}}\bigr),$$
+      where $\ell, L$ are the relative strong-concavity and relative smoothness constants of $\mathcal{G}$ with
+      respect to the entropic mirror map — an $O(1/K)$ rate to the true optimum $p_1^\star$.
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">General: non-concave $\mathcal{G}$, noisy &amp; biased oracles</span>
+      Under a Robbins–Monro step-size $\sum_k \eta_k = \infty,\;\sum_k \eta_k^2 &lt; \infty$ and standard summability
+      conditions on the oracle's bias and noise, the sequence of marginals $p_1^k$ produced by FDC converges weakly,
+      almost surely, to a stationary point of $\mathcal{G}$.
+    </div>
+
+    <p>
+      Concretely, this is — to our knowledge — the first convergence result for fine-tuning flow / diffusion generative
+      models under <em>general</em> utility functionals and <em>general</em> divergences, and it is obtained by leveraging
+      recent understanding of mirror flows.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== RESULTS ============================== -->
+<section id="results">
+  <div class="container">
+    <h2>Experiments</h2>
+
+    <p>
+      Across four illustrative 2D settings and two high-dimensional real-world tasks, FDC steers pre-trained models to
+      solve objectives beyond the reach of Adjoint Matching (AM), a classic linear fine-tuning scheme.
+    </p>
+
+    <!-- CVaR -->
+    <h3>Risk-averse generation via CVaR</h3>
+
+    <p>
+      We fine-tune a pre-trained policy under $\mathrm{CVaR}_\beta$ with $\beta = 0.01$ — the expected cost in the
+      worst 1% of samples. The cost field has a moderate-cost left band, a low-cost right zone, and thin
+      catastrophic red stripes. Adjoint Matching drives the density into the low-cost right area but exposes it
+      to rare extreme costs; FDC settles into the safer moderate-cost area, cutting the 1%-worst-case cost from
+      <strong>288.2 (AM)</strong> down to <strong>90.0</strong>, well below the initial 262.5.
+    </p>
+
+    <figure class="results">
+      <div class="fig-grid fig-4">
+        <img src="static/images/cvar_1.png" alt="Pre-trained samples on the CVaR cost landscape">
+        <img src="static/images/cvar_2.png" alt="AM vs FDC samples">
+        <img src="static/images/cvar_3.png" alt="Beta-worst-case cost">
+        <img src="static/images/cvar_4.png" alt="CVaR evaluation">
+      </div>
+      <div class="fig-labels fig-grid fig-4">
+        <span>(a) Pre-trained</span>
+        <span>(b) AM vs FDC</span>
+        <span>(c) $\beta$-worst-case cost</span>
+        <span>(d) CVaR evaluation</span>
+      </div>
+      <figcaption>
+        FDC minimizes the worst-case cost; AM minimizes the average and is punished on the tail.
+      </figcaption>
+    </figure>
+
+    <!-- SQ -->
+    <h3>Novelty-seeking generation via superquantile</h3>
+
+    <p>
+      The mirror-image problem: maximize $\mathrm{SQ}_\beta$ with $\beta = 0.99$ — the expected reward in the top 1%
+      of samples — over a reward field with a moderate central plateau and sparse extreme-reward spikes.
+      AM drifts into the safe left basin and reaches a top-1% reward of <strong>55.5</strong>. FDC instead pushes the
+      density toward the spikes, elevating the top-1% reward to <strong>596.1</strong> — an order of magnitude gain
+      over both AM and the initial 66.6.
+    </p>
+
+    <figure class="results">
+      <div class="fig-grid fig-4">
+        <img src="static/images/sq_1.png" alt="Pre-trained samples on the SQ reward landscape">
+        <img src="static/images/sq_2.png" alt="AM vs FDC samples">
+        <img src="static/images/sq_3.png" alt="Beta-best-case reward">
+        <img src="static/images/sq_4.png" alt="SQ evaluation">
+      </div>
+      <div class="fig-labels fig-grid fig-4">
+        <span>(a) Pre-trained</span>
+        <span>(b) AM vs FDC</span>
+        <span>(c) $\beta$-best-case reward</span>
+        <span>(d) SQ evaluation</span>
+      </div>
+      <figcaption>
+        FDC sacrifices average reward to unlock rare, exceptionally-high-reward regions — the tail is exactly what we care about in scientific discovery.
+      </figcaption>
+    </figure>
+
+    <!-- W1 -->
+    <h3>Reward maximization under optimal-transport regularization</h3>
+
+    <p>
+      Same pre-trained model, same reward (top-right maximum), but two anisotropic $W_1$ distances: $d_A$ makes
+      vertical moves more costly than horizontal ones, $d_B$ does the opposite. Both AM (with KL) and FDC-A (with
+      $W_1^A$) reach an expected reward of $35.0$, but FDC-A incurs only $W_1^A = 1.95$ versus $4.67$ for AM, and its
+      mean shift is <strong>280%</strong> larger horizontally than vertically. Under $d_B$, FDC-B preferentially shifts
+      the density upward. The geometry of the design space is respected.
+    </p>
+
+    <figure class="results">
+      <div class="fig-grid fig-3">
+        <img src="static/images/w1_1.png" alt="Pre-trained samples">
+        <img src="static/images/w1_2.png" alt="AM vs FDC-A samples under d_A">
+        <img src="static/images/w1_4.png" alt="AM vs FDC-B samples under d_B">
+      </div>
+      <div class="fig-labels fig-grid fig-3">
+        <span>(a) Pre-trained</span>
+        <span>(b) AM vs FDC-A (metric $d_A$)</span>
+        <span>(c) AM vs FDC-B (metric $d_B$)</span>
+      </div>
+      <figcaption>
+        Choosing the right divergence lets us encode <em>which</em> directions of movement are cheap — a capability
+        entirely outside KL-regularized fine-tuning.
+      </figcaption>
+    </figure>
+
+    <!-- Entropy -->
+    <h3>Manifold exploration via KL-regularized entropy maximization</h3>
+
+    <p>
+      The pre-trained density concentrates mass on the left half of the manifold. Fine-tuning to maximize
+      <em>entropy</em> with strength $\alpha$ shifts probability mass into low-coverage regions. Reducing
+      $\alpha$ from $0.5$ to $0.0$ trades off staying close to the prior against exploring — Monte Carlo entropy
+      grows from $6.78$ (pre) to $7.00$ ($\alpha=0.5$) to $7.14$ ($\alpha=0$). This gives explicit,
+      knob-controllable exploration — a capability not supported by prior manifold-exploration methods.
+    </p>
+
+    <figure class="results">
+      <div class="fig-grid fig-3">
+        <img src="static/images/entropy_pre.png" alt="Pre-trained samples">
+        <img src="static/images/entropy_alpha05.png" alt="FDC entropy maximization, alpha=0.5">
+        <img src="static/images/entropy_alpha0.png" alt="FDC entropy maximization, alpha=0.0">
+      </div>
+      <div class="fig-labels fig-grid fig-3">
+        <span>(a) Pre-trained &mdash; $\mathcal{H} = 6.78$</span>
+        <span>(b) FDC, $\alpha = 0.5$ &mdash; $\mathcal{H} = 7.00$</span>
+        <span>(c) FDC, $\alpha = 0.0$ &mdash; $\mathcal{H} = 7.14$</span>
+      </div>
+    </figure>
+
+    <!-- Stable Diffusion -->
+    <h3>Text-to-image: creative bridge design</h3>
+
+    <p>
+      Scaling up: we fine-tune <strong>Stable Diffusion 1.4</strong> with prompt <em>"A creative bridge design"</em>
+      to maximize KL-regularized entropy ($\alpha = 0.001$) for $K = 2$ iterations. On a sample of 100 generations
+      the Vendi diversity score climbs from <strong>2.36</strong> (pre-trained) to <strong>2.47</strong> (FDC), and
+      the CLIP prompt-alignment score also improves from <strong>0.19</strong> to <strong>0.22</strong> — more diverse
+      <em>and</em> more on-prompt.
+    </p>
+
+    <figure class="results">
+      <div class="fig-grid fig-3" style="max-width:440px; margin:0 auto;">
+        <img src="static/images/sd_0_base.png" alt="Pre-trained bridge design 1">
+        <img src="static/images/sd_5_base.png" alt="Pre-trained bridge design 2">
+        <img src="static/images/sd_6_base.png" alt="Pre-trained bridge design 3">
+      </div>
+      <p style="text-align:center; font-size:0.82rem; color:var(--text-muted); margin:0.35rem 0 0;">
+        Pre-trained Stable Diffusion 1.4
+      </p>
+      <div class="fig-grid fig-3" style="max-width:440px; margin:0.75rem auto 0;">
+        <img src="static/images/sd_0_ours.png" alt="FDC-fine-tuned bridge design 1">
+        <img src="static/images/sd_5_ours.png" alt="FDC-fine-tuned bridge design 2">
+        <img src="static/images/sd_6_ours.png" alt="FDC-fine-tuned bridge design 3">
+      </div>
+      <p style="text-align:center; font-size:0.82rem; color:var(--text-muted); margin:0.35rem 0 0;">
+        Stable Diffusion 1.4 fine-tuned with FDC (entropy, $\alpha = 0.001$)
+      </p>
+      <figcaption>
+        FDC pushes Stable Diffusion off its dominant modes into more diverse (yet still on-prompt) bridge designs.
+      </figcaption>
+    </figure>
+
+    <!-- Molecules -->
+    <h3>Molecular design: single-point energy minimization</h3>
+
+    <p>
+      We fine-tune <strong>FlowMol</strong> (pre-trained on QM9) to discover molecules minimizing single-point total
+      energy computed at the GFN1-xTB level. We maximize the <em>superquantile</em> of the negative energy at
+      $\beta = 0.998$ — we do not care about average sample quality, we care about the top 0.2% of designs.
+      Consistent with the objective: AM has a higher mean negative energy (<strong>29.1</strong>) than FDC
+      (<strong>27.5</strong>), but on the top-0.2% tail — where genuine leads live — FDC beats AM
+      (<strong>41.8</strong> vs. <strong>39.7</strong>).
+    </p>
+
+    <figure class="results">
+      <div class="fig-grid fig-3">
+        <img src="static/images/mol_energy_full.png" alt="Full distribution of negative energies over generated molecules">
+        <img src="static/images/mol_energy_tail.png" alt="Top 0.2% tail of negative energies over generated molecules">
+        <img src="static/images/mol_3d.png"          alt="3D visualization of a molecule generated by an FDC-fine-tuned FlowMol">
+      </div>
+      <div class="fig-labels fig-grid fig-3">
+        <span>(a) Full energy distribution</span>
+        <span>(b) Top-$0.2\%$ tail</span>
+        <span>(c) FDC-generated design</span>
+      </div>
+      <figcaption>
+        FDC deliberately trades average reward for a heavier right tail — exactly what novelty-seeking scientific
+        discovery calls for.
+      </figcaption>
+    </figure>
+
+    <!-- Summary table -->
+    <h3>Summary of gains over the linear-fine-tuning baseline</h3>
+
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Task &amp; metric</th>
+            <th>Pre-trained</th>
+            <th>Adjoint Matching</th>
+            <th>FDC (ours)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CVaR&nbsp;$_{0.01}$ worst-case cost&nbsp;↓ (toy)</td>
+            <td>262.5</td>
+            <td>288.2</td>
+            <td><strong>90.0</strong></td>
+          </tr>
+          <tr>
+            <td>SQ&nbsp;$_{0.99}$ best-case reward&nbsp;↑ (toy)</td>
+            <td>66.6</td>
+            <td>55.5</td>
+            <td><strong>596.1</strong></td>
+          </tr>
+          <tr>
+            <td>$W_1^A$ distance&nbsp;↓ (toy, matched $\mathbb{E}[r]$)</td>
+            <td>—</td>
+            <td>4.67</td>
+            <td><strong>1.95</strong></td>
+          </tr>
+          <tr>
+            <td>Entropy $\mathcal{H}(p^\pi)$&nbsp;↑ (toy)</td>
+            <td>6.78</td>
+            <td>—</td>
+            <td><strong>7.14</strong></td>
+          </tr>
+          <tr>
+            <td>Vendi diversity&nbsp;↑ &nbsp;(SD 1.4, bridges)</td>
+            <td>2.36</td>
+            <td>—</td>
+            <td><strong>2.47</strong></td>
+          </tr>
+          <tr>
+            <td>CLIP prompt-alignment&nbsp;↑ (SD 1.4, bridges)</td>
+            <td>0.19</td>
+            <td>—</td>
+            <td><strong>0.22</strong></td>
+          </tr>
+          <tr>
+            <td>Top-$0.2\%$ SQ negative energy&nbsp;↑ (FlowMol, QM9)</td>
+            <td>24.2</td>
+            <td>39.7</td>
+            <td><strong>41.8</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="color: var(--text-muted); font-size: 0.9rem;">
+      Bold marks the best value in each row. Numbers are means over seeds; see the paper for standard deviations and
+      additional metrics. The pattern is consistent: whenever the target task is <em>not</em> plain expected-reward
+      maximization, Adjoint Matching's linear objective misses it, while FDC's mirror-descent reduction gets it right.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== BIBTEX ============================== -->
+<section id="bibtex">
+  <div class="container">
+    <h2>BibTeX</h2>
+    <pre class="bibtex">@inproceedings{desanti2025flow,
+  title     = {Flow Density Control: Generative Optimization Beyond Entropy-Regularized Fine-Tuning},
+  author    = {De Santi, Riccardo and Vlastelica, Marin and Hsieh, Ya-Ping and Shen, Zebang and He, Niao and Krause, Andreas},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2025},
+  url       = {https://arxiv.org/abs/2511.22640}
+}</pre>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="page-footer">
+  <div class="container">
+    <p>
+      Page design adapted from the <a href="https://nerfies.github.io" target="_blank" rel="noopener">Nerfies</a> and
+      <a href="https://alrhub.github.io/dime-website/" target="_blank" rel="noopener">DIME</a> project pages.
+      <br>
+      <a href="https://www.riccardodesanti.com/">← back to riccardodesanti.com</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ActFlow — Active Flow Expansion for Out-of-Distribution Discovery</title>
+  <meta name="description"
+        content="Active Flow Expansion (ActFlow): a continued pre-training method that expands a pre-trained flow model beyond the training distribution via verifier-guided active exploration, with statistical guarantees and applications to molecules, peptides, and proteins.">
+
+  <!-- OpenGraph / Twitter -->
+  <meta property="og:type"        content="article">
+  <meta property="og:title"       content="ActFlow — Active Flow Expansion for Out-of-Distribution Discovery">
+  <meta property="og:description" content="A continued pre-training method that expands a pre-trained flow model beyond the training distribution via verifier-guided active exploration.">
+  <meta property="og:image"       content="https://www.riccardodesanti.com/projects/actflow/static/images/teaser_local_to_global.png">
+  <meta property="og:url"         content="https://www.riccardodesanti.com/projects/actflow/">
+  <meta name="twitter:card"       content="summary_large_image">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap">
+
+  <!-- KaTeX for math -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+        integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+        crossorigin="anonymous">
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+          integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+          crossorigin="anonymous"></script>
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+          integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+          crossorigin="anonymous"
+          onload="renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '$',  right: '$',  display: false},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false
+          });"></script>
+
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<!-- ============================== HERO ============================== -->
+<header class="hero">
+  <div class="container">
+    <h1>Active Flow Expansion for Out-of-Distribution Discovery: from Theory to Molecules</h1>
+
+    <p class="venue">
+      <strong>ActFlow</strong> &middot; a continued pre-training method for out-of-distribution flow modeling
+    </p>
+
+    <p class="authors">
+      <a href="https://x.com/desariky" target="_blank" rel="noopener">Riccardo De Santi</a><sup class="aff-marker">1,2</sup>,
+      Bruce Lee<sup class="aff-marker">1,2</sup>,
+      <a href="https://x.com/cristianpjensen" target="_blank" rel="noopener">Cristian Perez Jensen</a><sup class="aff-marker">1</sup>,
+      <a href="https://x.com/KimonProto6689" target="_blank" rel="noopener">Kimon Protopapas</a><sup class="aff-marker">1</sup>,
+      <a href="https://x.com/_sophia_tang_" target="_blank" rel="noopener">Sophia Tang</a><sup class="aff-marker">3</sup>,
+      Cheng-Hao Liu<sup class="aff-marker">4,5</sup>,
+      <a href="https://x.com/pranamanam" target="_blank" rel="noopener">Pranam Chatterjee</a><sup class="aff-marker">3</sup>,
+      <a href="https://x.com/yisongyue" target="_blank" rel="noopener">Yisong Yue</a><sup class="aff-marker">4</sup>,
+      <a href="https://x.com/arkrause" target="_blank" rel="noopener">Andreas Krause</a><sup class="aff-marker">1,2</sup>
+    </p>
+
+    <p class="affiliations">
+      <sup>1</sup>ETH Zurich &nbsp;&middot;&nbsp;
+      <sup>2</sup>ETH AI Center &nbsp;&middot;&nbsp;
+      <sup>3</sup>University of Pennsylvania &nbsp;&middot;&nbsp;
+      <sup>4</sup>Caltech &nbsp;&middot;&nbsp;
+      <sup>5</sup>FutureHouse
+    </p>
+
+    <div class="actions">
+      <a class="btn" href="https://arxiv.org/abs/2606.08802" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+        arXiv
+      </a>
+      <a class="btn btn-outline" href="https://arxiv.org/pdf/2606.08802" target="_blank" rel="noopener">PDF</a>
+      <a class="btn btn-outline" href="https://github.com/riccardodesanti/active_diffusion_models" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-1.94c-3.2.7-3.87-1.55-3.87-1.55-.53-1.35-1.29-1.71-1.29-1.71-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.41.36.78 1.06.78 2.14v3.17c0 .3.21.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        Code
+      </a>
+      <a class="btn btn-outline" href="#bibtex">BibTeX</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================== TEASER ============================== -->
+<div class="teaser">
+  <div class="container">
+    <figure>
+      <img src="static/images/teaser_local_to_global.png"
+           alt="Local-to-global reachability: pre-trained flow model covers only a small fraction of the valid design space. ActFlow expands its generable set over new valid regions.">
+      <figcaption>
+        <strong>ActFlow expands a pre-trained flow's <em>generable set</em>.</strong>
+        (Left) A standard pre-trained flow $\mu_{\theta_0}$ reliably generates only a small region $\Omega_{\theta_0}^\tau$ inside the valid design space $\Omega^\star$.
+        (Right) ActFlow performs verifier-guided active exploration in the learned flow representation, iteratively expanding the model's generable set toward the full valid space $\Omega^\star$.
+      </figcaption>
+    </figure>
+  </div>
+</div>
+
+<!-- ============================== ABSTRACT ============================== -->
+<section id="abstract">
+  <div class="container">
+    <h2>Abstract</h2>
+    <p>
+      Standard flow and diffusion pre-training matches the distribution of available data (e.g., molecules), which often covers only a small fraction of the valid design space. In generative discovery, however, one aims to sample <em>valid new-to-nature designs</em>, assigned negligible probability under, and thus inaccessible to, standard models fitted to the observed data. To overcome this limitation, we depart from data distribution matching and view a generative model through its <em>generable set</em>: the region it covers with non-negligible probability. This allows to introduce a new learning principle for out-of-distribution flow modeling: <strong>enlarging a model's generable set to increase coverage of the valid design space</strong>. We propose <strong>Active Flow Expansion (ActFlow)</strong>, a continued pre-training method that employs verifier feedback to expand a pre-trained model over new valid regions by iteratively adapting to synthetic data generated through active exploration in the learned flow representation. Theoretically, we establish to our knowledge first-of-their-kind statistical learning guarantees for out-of-distribution flow modeling, analyzing generable set expansion as a local-to-global reachability process over a learned representation. Empirically, we assess ActFlow with suitable out-of-distribution generative modeling metrics across small organic molecules, mid-sized drug-like molecules, therapeutic peptides, and protein sequence design tasks. Results show that ActFlow expands valid coverage far beyond the region modeled by the initial pre-trained model, significantly outperforming widely adopted synthetic flow pre-training methods.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== MOTIVATION ============================== -->
+<section id="motivation">
+  <div class="container">
+    <h2>Why standard flow pre-training falls short of discovery</h2>
+
+    <p>
+      Large-scale generative modeling has been transformed by <strong>flow</strong> and <strong>diffusion</strong> models, with impressive results across chemistry, biology, and robotics. Yet nearly all of this progress rests on a single learning principle: <em>match the distribution of available data</em>. For a flow $\mu_\theta$ with terminal density $p_1^\theta$, standard pre-training aims for
+    </p>
+
+    <p style="text-align:center;">$$p_1^\theta \;\approx\; p_{\mathrm{data}}.$$</p>
+
+    <p>
+      This is a natural target when the goal is to reproduce observed examples — but it is fundamentally the <em>wrong</em> target for out-of-distribution discovery. In real scientific discovery, we want <em>new-to-nature</em> designs: molecules, peptides, and proteins that do <em>not</em> yet exist in nature or in curated datasets, and therefore carry negligible probability mass under $p_{\mathrm{data}}$.
+    </p>
+
+    <div class="callout">
+      <span class="callout-label">Central limitation</span>
+      Let $\Omega^\star$ be the space of valid designs and let the model's <em>generable set</em> at level $\tau$ be
+      $\Omega_{\theta}^{\tau} := \{x : p_1^\theta(x) \ge \tau\}$ — the region the model can sample with non-negligible probability. Then, for standard pre-training,
+      $\Omega_{\theta^{\mathrm{pre}}}^{\tau} \subset \Omega^\star$ with $\mathrm{Vol}(\Omega_{\theta^{\mathrm{pre}}}^{\tau}) \ll \mathrm{Vol}(\Omega^\star).$
+      The pre-trained model reliably covers only a tiny fraction of the valid design space.
+    </div>
+
+    <p>
+      This suggests a different objective. Rather than approximating $p_{\mathrm{data}}$, we ask a flow to approximate <em>the valid design space itself</em>: $\Omega_\theta^\tau \approx \Omega^\star$. We call this new learning principle <strong>generable set expansion</strong>. The central algorithmic question then becomes: <em>how do we self-generate data that expands the model's generable set, rather than merely reinforcing where it already places high density?</em>
+    </p>
+  </div>
+</section>
+
+<!-- ============================== METHOD ============================== -->
+<section id="method">
+  <div class="container">
+    <h2>Active Flow Expansion (ActFlow)</h2>
+
+    <p>
+      <strong>ActFlow</strong> is a continued pre-training procedure that turns a pre-trained flow $\mu_{\theta^{\mathrm{pre}}}$ into a sequence of successively expanded models $\mu_{\theta_1}, \mu_{\theta_2}, \ldots$ whose generable sets grow toward $\Omega^\star$. The key idea is to <em>actively steer</em> self-generation toward high-uncertainty, potentially-valid frontier regions of a <em>learned flow representation</em> — not the raw design space $\mathcal{X}$.
+    </p>
+
+    <h3>The four moves in a single round</h3>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <div class="step-body">
+          <p><strong>Fit uncertainty over the learned flow representation.</strong>
+            At noising level $s \in (0,1)$, the velocity network $\mu_\theta$ exposes hidden features $\phi_s^t : \mathcal{X} \to \mathcal{Z}_s$ — an intermediate, learned representation. We treat verifier labels as noisy observations of an unknown validity score on $\mathcal{Z}_s$ and fit a linear-kernel Bayesian model to get a closed-form posterior variance $\sigma_t(x)$.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">2</span>
+        <div class="step-body">
+          <p><strong>Self-generate at the frontier.</strong>
+            We sample $x_{t+1}$ from a distribution that <em>trades off</em> verifier uncertainty against the current model prior:
+          </p>
+          <p style="text-align:center;">$$x_{t+1} \sim \tilde{p}_t \in \arg\max_{q}\; \mathbb{E}_{x \sim q}\!\left[\,\sigma_t\!\bigl(\phi_s^t(x)\bigr)\,\right] \;-\; \beta\,\mathrm{KL}\!\left(q \,\|\, p_1^{\theta_t}\right).$$</p>
+          <p>
+            As $\beta \to \infty$ this recovers standard sampling; as $\beta \to 0$ it becomes pure uncertainty maximization. Intermediate $\beta$ steers exploration toward <em>likely-valid frontier</em> regions.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">3</span>
+        <div class="step-body">
+          <p><strong>Query a black-box verifier.</strong>
+            The candidate is validated by a (possibly experimental, non-differentiable) verifier: $y_{t+1} = \tilde{v}(x_{t+1}) \in \{0,1\}$. The pair $(x_{t+1}, y_{t+1})$ is appended to the buffer $\mathcal{D}_{t+1}$, sharpening the surrogate for the next round.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">4</span>
+        <div class="step-body">
+          <p><strong>Continued pre-training with signed replay.</strong>
+            The flow is updated by a flow-matching step on newly accepted samples, optionally combined with an <em>unlearning</em> gradient on rejected ones:
+          </p>
+          <p style="text-align:center;">$$g_t = \nabla \widehat{L}_t^{+}(\theta_t) - \alpha_t \, \nabla \widehat{L}_t^{-}(\theta_t).$$</p>
+          <p>Across rounds, ActFlow reallocates model mass from dominant pre-trained modes toward newly discovered valid regions of $\Omega^\star$.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Formal algorithm</h3>
+
+    <div class="algorithm">
+      <div class="algo-title">Algorithm 1 — Active Flow Expansion (ActFlow)</div>
+      <p class="algo-inputs">
+        <strong>Input:</strong> pre-trained flow $\mu_{\theta_0}$, black-box verifier $\tilde{v}$, representation timestep $s \in (0,1)$, iterations $T$.
+      </p>
+      <ol>
+        <li>Initialize buffer $\mathcal{D}_0 \leftarrow \emptyset$.</li>
+        <li><strong>for</strong> $t = 0, 1, \dots, T-1$ <strong>do</strong>
+          <ol style="list-style:lower-alpha; margin-top:0.3rem;">
+            <li>Update surrogate uncertainty $\sigma_t$ from $\mathcal{D}_t$.</li>
+            <li>Self-generate $\;x_{t+1} \sim \tilde{p}_t \in \arg\max_{q}\, \mathbb{E}_{x\sim q}[\sigma_t(\phi_s^t(x))] - \beta\,\mathrm{KL}(q \,\|\, p_1^{\theta_t})$.</li>
+            <li>Query verifier: $\;y_{t+1} \leftarrow \tilde{v}(x_{t+1})$.</li>
+            <li>Append: $\mathcal{D}_{t+1} \leftarrow \mathcal{D}_t \cup \{(x_{t+1}, y_{t+1})\}$.</li>
+            <li>Update flow: $\;\theta_{t+1} \leftarrow \operatorname{UpdateFlow}(\theta_t, \mathcal{D}_{t+1})$.</li>
+          </ol>
+        </li>
+        <li><strong>end for</strong>; return $\mu_{\theta_T}$.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== THEORY ============================== -->
+<section id="theory">
+  <div class="container">
+    <h2>Out-of-distribution generative modeling guarantees via reachability</h2>
+
+    <p>
+      A natural worry is that active exploration might merely <em>redistribute</em> density inside the pre-trained generable set. Our main theoretical result shows this is not the case: under the assumptions stated in the paper, ActFlow provably <em>expands</em> the generable set, and it does so along a controllable, local-to-global reachability process over the learned representation.
+    </p>
+
+    <p>
+      Concretely, given a starting valid subset $S_0 \subseteq \Omega_{\theta_0}^\tau$ and a one-step reachability operator $R_\epsilon$ (defined via the Lipschitz behavior of the latent validity score $g$), one may consider its $H$-fold iterate $R_\epsilon^H(S_0)$ — the maximum valid set that can be certified from $S_0$ in $H$ local expansion steps. Then:
+    </p>
+
+    <div class="callout">
+      <span class="callout-label">Theorem (informal)</span>
+      Under a calibrated logistic verifier model, approximate uncertainty maximization over the current generable set, and an energy-based generative update abstraction, ActFlow satisfies — with probability at least $1 - \delta$ — after $T^\star \gtrsim \bigl(\alpha \, \gamma_{HT^\star}^{\Omega^\star} / \epsilon\bigr)^2$ verified samples,
+      $$R_\epsilon^H(S_0) \;\subseteq\; \Omega_{T^\star}^\tau .$$
+    </div>
+
+    <p>
+      In words: <strong>every valid region reachable from $S_0$ in $H$ verifier-certifiable steps is eventually covered by the model's generable set</strong>, with a sample complexity governed by an information-gain quantity of the learned representation. A companion corollary transfers the guarantee from representation space $\mathcal{Z}$ back to the design space $\mathcal{X}$.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== RESULTS ============================== -->
+<section id="results">
+  <div class="container">
+    <h2>Experiments</h2>
+
+    <p>
+      We evaluate ActFlow against two widely adopted self-generation baselines: continued pre-training on unfiltered model samples (<strong>Rec-NF</strong>) and on verifier-filtered samples (<strong>Rec-F</strong>). Because standard likelihood metrics reward distribution matching — the exact opposite of what we care about — we use OOD-aware metrics: <strong>coverage</strong> (number of valid clusters), <strong>diversity</strong> (Vendi score), and <strong>validity</strong>.
+    </p>
+
+    <!-- 2D illustrative -->
+    <h3>An illustrative 2D setting</h3>
+
+    <p>
+      A two-dimensional design space with a non-trivial valid region (green) lets us visualize the generable set directly. ActFlow (violet) expands the pre-trained generable set to near-optimally cover the valid space — through <em>sparse</em> directions to new corners — while both baselines stall.
+    </p>
+
+    <figure class="results">
+      <div class="fig-grid fig-4">
+        <img src="static/images/toy_pretrained.png" alt="Pre-trained samples">
+        <img src="static/images/toy_rec_nf.png"    alt="Rec-NF samples">
+        <img src="static/images/toy_rec_f.png"     alt="Rec-F samples">
+        <img src="static/images/toy_actflow.png"   alt="ActFlow samples">
+      </div>
+      <div class="fig-labels fig-grid fig-4">
+        <span>(a) Pre-trained</span>
+        <span>(b) Rec-NF</span>
+        <span>(c) Rec-F</span>
+        <span>(d) ActFlow (ours)</span>
+      </div>
+
+      <div class="fig-grid fig-3" style="margin-top:1rem;">
+        <img src="static/images/toy_coverage.png" alt="Coverage over rounds">
+        <img src="static/images/toy_validity.png" alt="Validity over rounds">
+        <img src="static/images/toy_pareto.png"   alt="Coverage-validity Pareto">
+      </div>
+      <div class="fig-labels fig-grid fig-3">
+        <span>(e) Coverage</span>
+        <span>(f) Validity</span>
+        <span>(g) Coverage&ndash;Validity</span>
+      </div>
+
+      <figcaption>
+        ActFlow increases coverage from <strong>1.16%</strong> to <strong>94.27%</strong> and validity from <strong>76%</strong> to <strong>95.9%</strong>. Rec-NF barely moves either; Rec-F trades coverage <em>down</em> for a modest validity gain. Only ActFlow achieves genuine OOD expansion — reaching disconnected valid corners through sparse frontier directions.
+      </figcaption>
+    </figure>
+
+    <!-- QM9 -->
+    <h3>Small organic molecules: FlowMol on QM9</h3>
+
+    <p>
+      Applied to the <strong>FlowMol</strong> Gaussian model pre-trained on <strong>QM9</strong>, ActFlow substantially expands valid molecular coverage to <strong>88.4</strong> valid clusters (vs. 45.4 for Rec-F and 42.8 for Rec-NF), attains the highest Vendi diversity (306.1), and preserves 95.9% validity. Rec-F preserves validity but expands little; Rec-NF collapses validity to 12.3%.
+    </p>
+
+    <figure class="results">
+      <div class="fig-grid fig-4">
+        <img src="static/images/qm9_coverage.png"  alt="QM9 coverage">
+        <img src="static/images/qm9_diversity.png" alt="QM9 diversity (Vendi)">
+        <img src="static/images/qm9_validity.png"  alt="QM9 validity">
+        <img src="static/images/qm9_pareto.png"    alt="QM9 coverage-validity Pareto">
+      </div>
+      <div class="fig-labels fig-grid fig-4">
+        <span>(a) Coverage</span>
+        <span>(b) Diversity</span>
+        <span>(c) Validity</span>
+        <span>(d) Coverage&ndash;Validity</span>
+      </div>
+    </figure>
+
+    <!-- GEOM-Drugs -->
+    <h3>Drug-like molecules: FlowMol on GEOM-Drugs</h3>
+
+    <p>
+      Scaling to the substantially larger, chemically-relevant <strong>GEOM-Drugs</strong> dataset, ActFlow drives coverage to <strong>144.3</strong> valid clusters (vs. 89.3 for Rec-F, 44.7 for Rec-NF) while achieving the top Vendi score of 303.1 and matching Rec-F on validity (56.6% vs. 58.8%). Rec-NF, again, collapses.
+    </p>
+
+    <figure class="results">
+      <div class="fig-grid fig-4">
+        <img src="static/images/geom_coverage.png"  alt="GEOM-Drugs coverage">
+        <img src="static/images/geom_diversity.png" alt="GEOM-Drugs diversity (Vendi)">
+        <img src="static/images/geom_validity.png"  alt="GEOM-Drugs validity">
+        <img src="static/images/geom_pareto.png"    alt="GEOM-Drugs coverage-validity Pareto">
+      </div>
+      <div class="fig-labels fig-grid fig-4">
+        <span>(a) Coverage</span>
+        <span>(b) Diversity</span>
+        <span>(c) Validity</span>
+        <span>(d) Coverage&ndash;Validity</span>
+      </div>
+    </figure>
+
+    <!-- Peptides -->
+    <h3>Therapeutic peptides: discrete diffusion</h3>
+
+    <p>
+      To probe generality beyond continuous flows, we apply ActFlow to a <strong>SMILES discrete diffusion model</strong> from PepTune, pre-trained on therapeutic peptides. ActFlow drives the number of PeptideCLM-embedding clusters from <strong>61</strong> to roughly <strong>358</strong>, while maintaining validity. Rec-NF collapses to 0% validity (a single misplaced token invalidates a peptide); Rec-F improves validity but leaves coverage nearly unchanged.
+    </p>
+
+    <!-- Proteins -->
+    <h3>Protein sequences: continuous ESM diffusion</h3>
+
+    <p>
+      Finally, we evaluate ActFlow on <strong>protein sequence design</strong> via an ESM-based continuous diffusion model from SGPO, pre-trained on the CreiLOV fluorescence dataset. ActFlow expands token-level ESM coverage from 66.5 to <strong>102.8</strong> valid clusters, achieves the top Vendi diversity of <strong>42.1</strong> (versus 12.9 for the pre-trained model), and simultaneously <em>improves</em> validity from 70.8% to 83.7% — a strictly stronger coverage–diversity–validity profile than either baseline.
+    </p>
+
+    <figure class="results">
+      <div class="fig-grid fig-2" style="max-width:780px; margin:0 auto;">
+        <img src="static/images/peptides_pareto.png" alt="Therapeutic peptide coverage-validity tradeoff">
+        <img src="static/images/proteins_pareto.png" alt="Protein sequence coverage-validity tradeoff">
+      </div>
+      <div class="fig-labels fig-grid fig-2" style="max-width:780px; margin:0.35rem auto 0;">
+        <span>(a) Therapeutic peptides</span>
+        <span>(b) Protein sequences</span>
+      </div>
+      <figcaption>Coverage–validity tradeoff across two OOD design settings. ActFlow's empirical gains carry from continuous flows to discrete diffusion (peptides) and continuous ESM diffusion (proteins), reaching the Pareto frontier in both.</figcaption>
+    </figure>
+
+    <figure class="results">
+      <div class="fig-grid fig-1" style="max-width:820px; margin:0 auto;">
+        <img src="static/images/proteins_3d_structures.png" alt="3D structures of proteins generated by ActFlow-expanded models">
+      </div>
+      <figcaption>3D structures directly generated (or string-converted) by models expanded via ActFlow, illustrating the diversity of foldable candidates uncovered outside the pre-trained coverage.</figcaption>
+    </figure>
+
+    <!-- Summary table -->
+    <h3>Summary across peptide &amp; protein design</h3>
+
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th colspan="3">Therapeutic peptides</th>
+            <th colspan="3">Protein sequences</th>
+          </tr>
+          <tr>
+            <th>Method</th>
+            <th>Coverage&nbsp;↑</th>
+            <th>Diversity&nbsp;↑</th>
+            <th>Validity&nbsp;↑</th>
+            <th>Coverage&nbsp;↑</th>
+            <th>Diversity&nbsp;↑</th>
+            <th>Validity&nbsp;↑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pre-trained</td>
+            <td>44.3</td><td>13.5</td><td>39.3%</td>
+            <td>66.5</td><td>12.9</td><td>70.8%</td>
+          </tr>
+          <tr>
+            <td>Rec-NF</td>
+            <td>0.0</td><td>0.0</td><td>0.0%</td>
+            <td>63.8</td><td>11.9</td><td>67.8%</td>
+          </tr>
+          <tr>
+            <td>Rec-F</td>
+            <td>59.7</td><td>13.6</td><td><strong>71.2%</strong></td>
+            <td>49.5</td><td>11.7</td><td><strong>88.1%</strong></td>
+          </tr>
+          <tr class="actflow-row">
+            <td>ActFlow (ours)</td>
+            <td><strong>358.3</strong></td><td><strong>58.9</strong></td><td>41.6%</td>
+            <td><strong>102.8</strong></td><td><strong>42.1</strong></td><td>83.7%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="color: var(--text-muted); font-size: 0.9rem;">
+      Numbers are means over seeds; see Table 2 in the paper for standard deviations and additional metrics (FID). The pattern is consistent across all four biochemical settings: ActFlow substantially expands valid coverage and diversity beyond what any purely recursive baseline can achieve.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== BIBTEX ============================== -->
+<section id="bibtex">
+  <div class="container">
+    <h2>BibTeX</h2>
+    <pre class="bibtex">@article{desanti2026active,
+  title   = {Active Flow Expansion for Out-of-Distribution Discovery: from Theory to Molecules},
+  author  = {De Santi, Riccardo and Lee, Bruce and Perez Jensen, Cristian and Protopapas, Kimon and Tang, Sophia and Liu, Cheng-Hao and Chatterjee, Pranam and Yue, Yisong and Krause, Andreas},
+  journal = {arXiv preprint arXiv:2606.08802},
+  year    = {2026}
+}</pre>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="page-footer">
+  <div class="container">
+    <p>
+      Page design adapted from the <a href="https://nerfies.github.io" target="_blank" rel="noopener">Nerfies</a> and
+      <a href="https://alrhub.github.io/dime-website/" target="_blank" rel="noopener">DIME</a> project pages.
+      <br>
+      <a href="https://www.riccardodesanti.com/">← back to riccardodesanti.com</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
