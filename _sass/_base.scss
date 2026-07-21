@@ -1423,3 +1423,94 @@ html[data-theme='dark'] .research-area {
   background-color: var(--global-card-bg-color);
   border-color: var(--global-divider-color);
 }
+
+// ---------------------------------------------------------------------------
+// Code page — clickable project cards linking out to standalone project pages.
+// ---------------------------------------------------------------------------
+.code-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+}
+
+.code-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+    border-color: var(--global-theme-color);
+    outline: none;
+
+    .code-card__title { color: var(--global-theme-color); }
+  }
+
+  .code-card__image {
+    width: 100%;
+    aspect-ratio: 5 / 2;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid #e1e4e8;
+
+    img {
+      max-width: 92%;
+      max-height: 88%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+  }
+
+  .code-card__body {
+    padding: 1rem 1.25rem 1.15rem;
+  }
+
+  .code-card__title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 0.3rem;
+    transition: color 0.15s ease;
+  }
+
+  .code-card__venue {
+    font-size: 0.82rem;
+    color: var(--global-text-color-light);
+    margin: 0 0 0.55rem;
+    font-style: italic;
+  }
+
+  .code-card__desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+}
+
+html[data-theme='dark'] .code-card {
+  background-color: var(--global-card-bg-color);
+  border-color: var(--global-divider-color);
+
+  .code-card__image {
+    background-color: var(--global-bg-color);
+    border-bottom-color: var(--global-divider-color);
+  }
+}

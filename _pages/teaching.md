@@ -6,7 +6,7 @@ nav_title: Teaching
 description: Student research supervision, mentoring, and academic outreach.
 hide_header: true
 nav: true
-nav_order: 4
+nav_order: 5
 ---
 
 > **Interested in working with me?** I supervise strong and highly motivated students (primarily) from ETH on research and thesis projects in generative discovery via flow and diffusion models, covering theory, scalable generative methods, and applications in chemistry, biology, and physical sciences.
