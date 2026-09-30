@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Selected as a [2026 Rising Star in Data Science](https://datascience.uchicago.edu/research/postdoctoral-programs/rising-stars/#application) by **UChicago**, **Stanford**, **Harvard**, **UCSD**.
+Selected as a [2026 Rising Star in Data Science](https://hai.stanford.edu/research/fellowship-programs/rising-stars-in-data-science) by **UChicago**, **Stanford**, **Harvard**, **UCSD**.
