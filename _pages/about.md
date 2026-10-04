@@ -12,8 +12,8 @@ profile:
   image: desanti_riccardo.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>Annenberg 328, Caltech</p>
-    <p>Pasadena, CA, USA</p>
+    <p>OAT Y 14, ETH</p>
+    <p>Zurich, Switzerland</p>
 
 news: true  # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
@@ -23,7 +23,7 @@ selected_talks: true # includes the list of talks from _data/talks.yml
 social: false  # includes social icons at the bottom of the page
 ---
 
-Currently, I'm at [California Institute of Technology (Caltech)](https://www.caltech.edu), visiting [Yisong Yue](https://www.yisongyue.com)'s group and [Frances H. Arnold](http://fhalab.caltech.edu)'s lab, working to close the loop between generative exploration and chemical wet-lab discovery.  I am a Ph.D. student at ETH Zurich, advised by [Andreas Krause](https://las.inf.ethz.ch), [Niao He](https://odi.inf.ethz.ch), and [Kjell Jorner](https://dcl.ethz.ch), and supported by the [ETH AI Center](https://ai.ethz.ch) and [NCCR Catalysis](https://www.nccr-catalysis.ch). Recently, I was selected as a [**2026 Rising Star in Data Science**](https://hai.stanford.edu/research/fellowship-programs/rising-stars-in-data-science) by UChicago, Stanford, Harvard, and UCSD.  I serve as a research mentor for [LeadTheFuture](https://leadthefuture.tech).
+I am a Ph.D. student at ETH Zurich, advised by [Andreas Krause](https://las.inf.ethz.ch), [Niao He](https://odi.inf.ethz.ch), and [Kjell Jorner](https://dcl.ethz.ch), and supported by the [ETH AI Center](https://ai.ethz.ch) and [NCCR Catalysis](https://www.nccr-catalysis.ch). After visiting [California Institute of Technology (Caltech)](https://www.caltech.edu), I continue working with [Yisong Yue](https://www.yisongyue.com)'s group and [Frances H. Arnold](http://fhalab.caltech.edu)'s lab to close the loop between generative discovery and chemical wet-lab validation. Recently, I was selected as a [**2026 Rising Star in Data Science**](https://hai.stanford.edu/research/fellowship-programs/rising-stars-in-data-science) by UChicago, Stanford, Harvard, and UCSD. I serve as a research mentor for [LeadTheFuture](https://leadthefuture.tech).
 
 My [research]({{ '/research/' | relative_url }}) focuses on developing **generative algorithms for discovery beyond the data** — bridging flow and diffusion modeling, decision-making under uncertainty, and optimization, to enable **new-to-nature discovery**. Broadly, I aim to contribute to the foundations of a **science of generative discovery**: principled methods that move generative modeling beyond distribution matching and toward the discovery of new, valid, and useful structures, designs, and hypotheses.
 
