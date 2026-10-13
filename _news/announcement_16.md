@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Our [Next Generation of Discovery Loops](https://ellis-unconference.github.io) session, co-organized with Samuel Kaski, Chris Holmes, Yee Whye Teh, and colleagues, has been accepted at the [ELLIS UnConference 2026](https://ellis-unconference.github.io) in Paris.
+Our [Next Generation of Discovery Loops](https://newgendiscloop.github.io) session, co-organized with Samuel Kaski, Chris Holmes, Yee Whye Teh, and colleagues, has been accepted at the [ELLIS UnConference 2026](https://ellis-unconference.github.io) in Paris.
