@@ -1500,6 +1500,11 @@ html[data-theme='dark'] .research-area {
     }
   }
 
+  .code-card__image--molecules img {
+    width: 30%;
+    max-width: 30%;
+  }
+
   .code-card__body {
     padding: 1rem 1.25rem 1.15rem;
   }
