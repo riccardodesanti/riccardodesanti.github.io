@@ -648,6 +648,23 @@ footer.sticky-bottom {
 
 // Publications
 
+// Publication and talk links share the same button appearance and hover state.
+.publications ol.bibliography li .links a.btn,
+.talks .talk-links a.btn {
+  color: var(--global-text-color);
+  border: 1px solid var(--global-text-color);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  margin-left: 0;
+
+  &:hover {
+    color: var(--global-theme-color);
+    border-color: var(--global-theme-color);
+  }
+}
+
 .publications {
   margin-top: 2rem;
 
@@ -750,23 +767,6 @@ footer.sticky-bottom {
           &:hover {
             color: var(--global-text-color);
             border-bottom: 1px dashed var(--global-text-color);
-          }
-        }
-      }
-
-      .links {
-        a.btn {
-          color: var(--global-text-color);
-          border: 1px solid var(--global-text-color);
-          padding-left: 1rem;
-          padding-right: 1rem;
-          padding-top: 0.25rem;
-          padding-bottom: 0.25rem;
-          margin-left: 0;
-
-          &:hover {
-            color: var(--global-theme-color);
-            border-color: var(--global-theme-color);
           }
         }
       }
@@ -1321,94 +1321,154 @@ nav[data-toggle="toc"] {
   box-shadow: 0 0 0 4px #FFF5AD;
 }
 
-// Selected Talks section on the About page (year / title / venue).
-// Layout is a simple flex row per talk — no table, no borders, no box.
+// Shared timeline for Selected Talks and the full Talks page.
 .talks {
-  margin-top: 2rem;   // match the vertical breathing room above .publications
+  --talk-accent: #{$purple-color};
+  --talk-line: #{rgba($purple-color, 0.18)};
+  --talk-muted: #6b6b6b;
+  --talk-date-width: 6.5rem;
+  margin-top: 1.5rem;
 
   .talk {
     display: flex;
-    gap: 1rem;
-    align-items: baseline;
-    margin-bottom: 0.85rem;
+    gap: 0.75rem;
+    align-items: stretch;
   }
 
   .talk-year {
-    flex: 0 0 3rem;
-    font-weight: 600;
-    color: var(--global-text-color-light);
+    flex: 0 0 var(--talk-date-width);
+    padding-top: 0.9rem;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: var(--talk-muted);
+    white-space: nowrap;
   }
 
   .talk-body {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.8rem 0 0.8rem 1.2rem;
+    border-left: 1px solid var(--talk-line);
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      left: -4px;
+      top: 1.3rem;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--talk-line);
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+  }
+
+  .talk-details {
     flex: 1 1 auto;
     min-width: 0;
   }
 
   .talk-title {
+    display: block;
     font-weight: 600;
+    line-height: 1.45;
     color: var(--global-text-color);
   }
 
   .talk-venue {
-    color: var(--global-text-color-light);
-    font-size: 0.9rem;
-    margin-top: 0.15rem;
+    color: var(--talk-muted);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-top: 0.2rem;
+
+    a {
+      color: inherit;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--talk-accent);
+      }
+    }
+
+    em { color: inherit; }
   }
 
   .talk-links {
-    margin-top: 0.15rem;
+    flex: 0 0 auto;
+    display: flex;
+    gap: 0.4rem;
+    align-self: center;
+  }
 
-    a.btn {
-      color: var(--global-text-color);
-      border: 1px solid var(--global-text-color);
-      padding-left: 1rem;
-      padding-right: 1rem;
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
-      margin-left: 0;
+  a:focus-visible {
+    outline: 2px solid var(--talk-accent);
+    outline-offset: 3px;
+  }
 
-      &:hover {
-        color: var(--global-theme-color);
-        border-color: var(--global-theme-color);
-      }
+  .talk:hover,
+  .talk:focus-within {
+    .talk-body::before {
+      background-color: var(--talk-accent);
+      transform: scale(1.6);
     }
   }
 
   .talk-tag {
     font-style: italic;
-    color: var(--global-text-color-light);
+    color: var(--talk-muted);
   }
 
-  @media (max-width: 576px) {
+  @media (max-width: 575px) {
     .talk {
       flex-direction: column;
-      gap: 0.15rem;
+      gap: 0.2rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--global-divider-color);
+
+      &:last-child { border-bottom: 0; }
     }
+
     .talk-year {
       flex: none;
+      padding-top: 0;
     }
+
+    .talk-body {
+      display: block;
+      padding: 0;
+      border-left: 0;
+
+      &::before { display: none; }
+    }
+
+    .talk-links {
+      flex-wrap: wrap;
+      margin-top: 0.55rem;
+    }
+
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .talk-body::before,
+    .talk-link { transition: none; }
   }
 }
 
-// Wider date column on the dedicated /talks/ page (formatted dates like
-// "Jun 10, 2026" don't fit the 3rem year column used on the About page).
+html[data-theme='dark'] .talks {
+  --talk-accent: #{lighten($purple-color, 35%)};
+  --talk-line: #{rgba(lighten($purple-color, 35%), 0.35)};
+  --talk-muted: var(--global-text-color-light);
+}
+
 .talks.talks--full {
   margin-top: 1rem;
-
-  .talk-year {
-    flex: 0 0 7rem;
-    font-variant-numeric: tabular-nums;
-  }
-
-  // On narrow screens the parent .talks .talk switches to `flex-direction: column`,
-  // which turns `flex: 0 0 7rem` into a fixed *height* of 7rem for the date row —
-  // producing a huge empty gap between the date and the talk title. Override with
-  // higher specificity than the mobile rule inside `.talks`.
-  @media (max-width: 576px) {
-    .talk-year {
-      flex: none;
-    }
-  }
 }
 
 // Compact gray box (e.g. the contact/footer block on the About page) — same

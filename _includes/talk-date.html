@@ -1,0 +1,22 @@
+{%- assign talk = include.talk -%}
+{%- if talk.date and talk.date != '' -%}
+  {%- if talk.date.size == 4 -%}
+    {{- talk.date -}}
+  {%- else -%}
+    {%- assign start_date = talk.date | slice: 0, 7 | append: '-01' -%}
+    {%- if talk.date_end -%}
+      {%- assign end_date = talk.date_end | slice: 0, 7 | append: '-01' -%}
+      {%- assign start_year = start_date | date: '%Y' -%}
+      {%- assign end_year = end_date | date: '%Y' -%}
+      {%- if start_year == end_year -%}
+        {{- start_date | date: '%b' -}}–{{- end_date | date: '%b %Y' -}}
+      {%- else -%}
+        {{- start_date | date: '%b %Y' -}}–{{- end_date | date: '%b %Y' -}}
+      {%- endif -%}
+    {%- else -%}
+      {{- start_date | date: '%b %Y' -}}
+    {%- endif -%}
+  {%- endif -%}
+{%- else -%}
+  {{- talk.year -}}
+{%- endif -%}

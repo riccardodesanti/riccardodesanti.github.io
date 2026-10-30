@@ -66,28 +66,30 @@ layout: default
 
           <!-- Selected talks -->
           {% if page.selected_talks and site.data.talks -%}
-            <h2>Selected Talks</h2>
+            <h2 id="selected-talks">Selected Talks</h2>
             <div class="talks">
               {% for talk in site.data.talks %}
                 <div class="talk">
-                  <span class="talk-year">{{ talk.year }}</span>
+                  <span class="talk-year">{% include talk-date.html talk=talk %}</span>
                   <div class="talk-body">
-                    <span class="talk-title">{{ talk.title }}</span>
-                    <div class="talk-venue">
-                      {%- for v in talk.venues -%}
-                        {%- if v.url -%}
-                          <a href="{{ v.url }}" target="_blank" rel="noopener"><em>{{ v.name }}</em></a>
-                        {%- else -%}
-                          <em>{{ v.name }}</em>
-                        {%- endif -%}
-                        {%- unless forloop.last %}, {% endunless -%}
-                      {%- endfor -%}
-                      {%- if talk.tag %} <span class="talk-tag">{{ talk.tag }}</span>{% endif -%}
-                      {%- if talk.note %}, {{ talk.note }}{%- endif -%}
+                    <div class="talk-details">
+                      <span class="talk-title">{{ talk.title }}</span>
+                      <div class="talk-venue">
+                        {%- for v in talk.venues -%}
+                          {%- if v.url -%}
+                            <a href="{{ v.url }}" target="_blank" rel="noopener"><em>{{ v.name }}</em></a>
+                          {%- else -%}
+                            <em>{{ v.name }}</em>
+                          {%- endif -%}
+                          {%- unless forloop.last %}, {% endunless -%}
+                        {%- endfor -%}
+                        {%- if talk.tag %} <span class="talk-tag">{{ talk.tag }}</span>{% endif -%}
+                        {%- if talk.note %}, {{ talk.note }}{%- endif -%}
+                      </div>
                     </div>
                     {%- if talk.slides and talk.slides != '' %}
                     <div class="talk-links">
-                      <a href="{{ talk.slides | relative_url }}" class="btn btn-sm z-depth-0" role="button" target="_blank" rel="noopener">Slides</a>
+                      <a href="{{ talk.slides | relative_url }}" class="talk-link btn btn-sm z-depth-0" aria-label="Slides for {{ talk.title | escape }}" target="_blank" rel="noopener">Slides</a>
                     </div>
                     {%- endif %}
                   </div>

@@ -3,8 +3,8 @@
 # render order on the page (put the most recent first).
 #
 # Each entry has:
-#   date:    (optional) "YYYY-MM-DD" or "YYYY-MM" — shown as a formatted
-#            date on the page. If omitted, `year` is used instead.
+#   date:    (optional) "YYYY-MM-DD" or "YYYY-MM" — shown as month and year
+#            on the page. If omitted, `year` is used instead.
 #   year:    required fallback when `date` is missing
 #   title:   talk title
 #   venue:   { name, url } — url is optional
@@ -13,10 +13,16 @@
 #   slides:  (optional) URL or /assets/pdf/... to slides; when set the title becomes a link
 
 - year: 2026
+  date: "2026-10-23"
+  title: "Generative Discovery Beyond the Data"
+  venue: { name: "UC San Diego", url: "https://ucsd.edu" }
+  slides: "/assets/pdf/GenDisc_UCSD.pdf"
+
+- year: 2026
   date: "2026-07-12"     # fill in when scheduled
   title: "Active Generative Models for Out-of-Distribution Discovery: from Theory to Molecules"
   venue: { name: "UNIST", url: "https://www.unist.ac.kr" }
-  note: "South Korea &mdash; post-ICML Workshop hosted by the Active Generative Agents Lab"
+  note: "South Korea &mdash; post-ICML Workshop by Active Generative Agents Lab"
   slides: "/assets/pdf/active_OOD_discovery_UNIST.pdf"
 
 - year: 2026
@@ -62,19 +68,19 @@
   note: "San Mateo, California"
 
 - year: 2024
-  date: ""
+  date: "2024-07"
   title: "Towards Generative Decision-Making for Scientific Discovery"
   venue: { name: "ETH AI Center", url: "https://ai.ethz.ch" }
   note: "Zurich, Switzerland"
 
 - year: 2023
-  date: ""
+  date: "2023-02"
   title: "Towards Convex Reinforcement Learning for the Real-World"
   venue: { name: "ETH AI Center", url: "https://ai.ethz.ch" }
   note: "Zurich, Switzerland (as an M.Sc. student)"
 
 - year: 2022
-  date: ""
+  date: "2022-09"
   title: "The Role of Causal Structure in Unsupervised Reinforcement Learning"
   venue: { name: "Technische Universität Dresden", url: "https://tu-dresden.de" }
-  note: "Dresden, Germany &mdash; only M.Sc. student as RL workshop speaker"
+  note: "Dresden, Germany"
