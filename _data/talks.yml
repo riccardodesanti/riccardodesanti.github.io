@@ -15,10 +15,27 @@
 #   tag:     (optional) small plain-text tag rendered right after the last
 #            venue name, e.g. "(scheduled)" for upcoming talks.
 - year: 2026
+  date: "2026-11-10"
+  title: "Generative Discovery Beyond the Data"
+  venues:
+    - { name: "Rising Stars in Data Science 2026, University of Chicago", url: "https://hai.stanford.edu/research/fellowship-programs/rising-stars-in-data-science" }
+  tag: "(15 min)"
+  slides: "/assets/pdf/GenDisc_RisingStars.pdf"
+
+- year: 2026
+  date: "2026-11-05"
+  title: "Generative Discovery Beyond the Data"
+  venues:
+    - { name: "Cancer Research UK, Cambridge Institute, University of Cambridge", url: "https://www.cruk.cam.ac.uk/" }
+  tag: "(40 min)"
+  slides: "/assets/pdf/GenDisc_CRUK_Cambridge.pdf"
+
+- year: 2026
   date: "2026-10-23"
   title: "Generative Discovery Beyond the Data"
   venues:
     - { name: "UC San Diego", url: "https://ucsd.edu" }
+  tag: "(50 min)"
   slides: "/assets/pdf/GenDisc_UCSD.pdf"
 
 - year: 2026
