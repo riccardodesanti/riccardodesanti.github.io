@@ -29,6 +29,7 @@ I have had the opportunity to act as thesis or project advisor for several M.S. 
 - Benson Lee (2026, ETH, semester project, statistical theory of discovery, ongoing)
 - Jan Kogler (2026, ETH, M.S. thesis, active flow expansion for material design, ongoing)
 - Federico Nicolo' (2026, EPFL/ETH, M.S. thesis, wet-lab driven flow expansion, ongoing)
+- Juan Guevara Lugo (2026, MBZUAI, research project, multi-objective flow optimization)
 
 ### Teaching Assistant
 *ETH Zurich — 2022 – Present*
