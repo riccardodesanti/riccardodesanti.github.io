@@ -754,7 +754,8 @@ footer.sticky-bottom {
           }
         }
 
-        >em {
+        >em,
+        >span.more-authors em {
           border-bottom: 1px solid;
           font-style: normal;
         }

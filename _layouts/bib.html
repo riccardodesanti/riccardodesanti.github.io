@@ -94,28 +94,42 @@
           {%- if more_authors > 1 -%}
             {%- assign more_authors_hide = more_authors_hide | append: "s" -%}
           {%- endif -%}
-          {%- assign more_authors_show = '' -%}
-          {%- for author in entry.author_array offset: author_array_limit -%}
-            {%- assign more_authors_show = more_authors_show | append: author.first | append: " " | append: author.last -%}
-            {%- unless forloop.last -%}
-              {%- assign more_authors_show = more_authors_show | append: ", " -%}
-            {%- endunless -%}
-          {%- endfor -%}
+          {%- capture more_authors_show -%}
+            {%- for author in entry.author_array offset: author_array_limit -%}
+              {%- unless forloop.first -%}, {% endunless -%}
+              {%- assign author_last_name = author.last | remove: "¶" | remove: "&" | remove: "*" | remove: "†" | remove: "^" -%}
+              {%- if site.scholar.last_name contains author_last_name and site.scholar.first_name contains author.first -%}
+                <em>{{author.first | escape}} {{author.last | escape}}</em>
+              {%- else -%}
+                {{author.first | escape}} {{author.last | escape}}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
           , and
           <span
               class="more-authors"
               title="click to view {{more_authors_hide}}"
+              data-authors="{{more_authors_show | escape}}"
+              data-label="{{more_authors_hide}}"
+              data-expanded="false"
               onclick="
                 var element = $(this);
-                element.attr('title', '');
-                var more_authors_text = element.text() == '{{more_authors_hide}}' ? '{{more_authors_show}}' : '{{more_authors_hide}}';
+                clearInterval(element.data('animation'));
+                var expanded = element.attr('data-expanded') != 'true';
+                var authors_html = element.attr('data-authors');
+                var label = element.attr('data-label');
+                var more_authors_text = expanded ? $('&lt;span&gt;').html(authors_html).text() : label;
+                element.attr('data-expanded', expanded ? 'true' : 'false');
+                element.attr('title', (expanded ? 'click to hide ' : 'click to view ') + label);
                 var cursorPosition = 0;
                 var textAdder = setInterval(function(){
                   element.text(more_authors_text.substring(0, cursorPosition + 1));
                   if (++cursorPosition == more_authors_text.length){
                     clearInterval(textAdder);
+                    if (expanded) element.html(authors_html);
                   }
               }, '{{site.more_authors_animation_delay}}');
+                element.data('animation', textAdder);
               "
           >{{more_authors_hide}}</span>
         {%- endif -%}
