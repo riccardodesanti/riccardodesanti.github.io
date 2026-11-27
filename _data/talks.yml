@@ -15,6 +15,13 @@
 #   tag:     (optional) small plain-text tag rendered right after the last
 #            venue name, e.g. "(scheduled)" for upcoming talks.
 - year: 2026
+  date: "2026-11-23"
+  title: "Teaching Scientific Generators to Reach Discovery Goals"
+  venues:
+    - { name: "AstraZeneca, Frontier AI Research" }
+  slides: "/assets/pdf/GenDisc_AstraZeneca.pdf"
+
+- year: 2026
   date: "2026-11-10"
   title: "Generative Discovery Beyond the Data"
   venues:

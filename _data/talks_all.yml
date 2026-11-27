@@ -13,6 +13,12 @@
 #   slides:  (optional) URL or /assets/pdf/... to slides; when set the title becomes a link
 
 - year: 2026
+  date: "2026-11-23"
+  title: "Teaching Scientific Generators to Reach Discovery Goals"
+  venue: { name: "AstraZeneca, Frontier AI Research" }
+  slides: "/assets/pdf/GenDisc_AstraZeneca.pdf"
+
+- year: 2026
   date: "2026-11-10"
   title: "Generative Discovery Beyond the Data"
   venue: { name: "Rising Stars in Data Science 2026, University of Chicago", url: "https://hai.stanford.edu/research/fellowship-programs/rising-stars-in-data-science" }
